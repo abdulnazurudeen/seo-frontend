@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import { useTheme } from '@mui/material/styles'
+import React from "react";
 import ReactApexcharts from 'src/@core/components/react-apexcharts'
 import ChartTwoTable from './chart_two_table'
 import Card from "@mui/material/Card";
@@ -7,9 +6,6 @@ import CardHeader from "@mui/material/CardHeader";
 import Switch from '@mui/material/Switch';
 
 const ViewChartTwo = () => {
-
-    const theme = useTheme()
-
   const data = {
     labels: [
       "Best (1/2 these keywords in 1-3)",

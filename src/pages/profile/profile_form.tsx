@@ -4,15 +4,13 @@ import Grid from '@mui/material/Grid'
 import TextField from '@mui/material/TextField'
 import CardHeader from '@mui/material/CardHeader'
 import CardContent from '@mui/material/CardContent'
-import { useRouter } from 'next/router'
 import Button from '@mui/material/Button'
 import Paper from '@mui/material/Paper';
-const ProfileeForm = () => {
 
-    const router = useRouter()
+const ProfileeForm = () => {
     const [state, setState] = useState({
-        conversion_rate: 0,
-        lead_close_rate: 0,
+        first_name: 0,
+        email: 0,
         order_val: '',
         device: '',
         location: '',
@@ -40,14 +38,15 @@ const ProfileeForm = () => {
             <Grid container spacing={5}>
                 <Grid item xs={2}>
                     <Paper elevation={0} />
-                        <img style={{ width: '100%' }} src="https://demos.themeselection.com/marketplace/materio-mui-react-nextjs-admin-template/demo-1/images/avatars/1.png" />
+                        <img alt="Profile Image" style={{ width: '100%' }} src="https://demos.themeselection.com/marketplace/materio-mui-react-nextjs-admin-template/demo-1/images/avatars/1.png" />
                         <Button variant="contained" color="info" style={{ fontSize: '10px' }}>Chanage Profile</Button>
                     <Paper />
                 </Grid>
                 <Grid item xs={5}>
                     <TextField 
                         fullWidth 
-                        name="first Name"
+                        name="first_name"
+                        value={state.first_name}
                         onChange={handleChange}
                         label='First Name' 
                         placeholder='Enter First Name' 

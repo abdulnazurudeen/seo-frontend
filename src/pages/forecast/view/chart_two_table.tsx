@@ -6,7 +6,7 @@ import TableBody from '@mui/material/TableBody'
 import TableCell from '@mui/material/TableCell'
 import TableContainer from '@mui/material/TableContainer'
 
-let tableList = [
+const tableList = [
     {
       f1: "Best (1/2 these keywords in 1-3)",
       f2: 57830,

@@ -8,7 +8,7 @@ import TableContainer from '@mui/material/TableContainer'
 import Card from '@mui/material/Card'
 import CardHeader from '@mui/material/CardHeader'
 
-let potentialsList = [
+const potentialsList = [
     {
       f1: "Best (1/2 these keywords in 1-3)",
       f2: "351055",

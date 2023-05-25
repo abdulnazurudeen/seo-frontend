@@ -1,4 +1,4 @@
-import { ChangeEvent, MouseEvent, useState, SyntheticEvent } from 'react'
+import { useState } from 'react'
 import Box from '@mui/material/Box'
 import Card from '@mui/material/Card'
 import Grid from '@mui/material/Grid'
@@ -9,16 +9,15 @@ import InputLabel from '@mui/material/InputLabel'
 import CardContent from '@mui/material/CardContent'
 import FormControl from '@mui/material/FormControl'
 import MenuItem from '@mui/material/MenuItem';
-import Select, { SelectChangeEvent } from '@mui/material/Select';
+import Select from '@mui/material/Select';
 import { useRouter } from 'next/router'
 
-interface State {
-  password: string
-  showPassword: boolean
-}
+// interface State {
+//   password: string
+//   showPassword: boolean
+// }
 
 const ForeCastForm = () => {
-
     const router = useRouter()
     const handleClick = (e: { preventDefault: () => void }, path: string) => {
         e.preventDefault()
@@ -101,6 +100,7 @@ const ForeCastForm = () => {
                 <TextField 
                 fullWidth 
                 name="conversion_rate"
+                value={state.conversion_rate}
                 onChange={handleChange}
                 label='Enter Your Conversion Rate %' 
                 placeholder='Enter value in %' 

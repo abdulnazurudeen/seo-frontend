@@ -82,7 +82,7 @@ const rows = [
   },
 ]
 
-const ForeCastList = () => {
+const ForeCastListTable = () => {
   // ** States
   const [page, setPage] = useState<number>(0)
   const [rowsPerPage, setRowsPerPage] = useState<number>(10)
@@ -155,4 +155,4 @@ const ForeCastList = () => {
   )
 }
 
-export default ForeCastList
+export default ForeCastListTable

@@ -85,7 +85,8 @@ const PlanList = () =>{
             f8: "100",
             f9: "6000"
           }
-    ]
+    ];
+    
     return (
         <>
         <Card>

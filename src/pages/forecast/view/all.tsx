@@ -7,7 +7,7 @@ import TableCell from '@mui/material/TableCell'
 import TableContainer from '@mui/material/TableContainer'
 import TablePagination from '@mui/material/TablePagination'
 import { useState, ChangeEvent } from 'react'
-import AllData from './all_data'
+import AllData from '../../../data/all_data'
 
 const Potentials = () => {
     const [page, setPage] = useState<number>(0)
@@ -21,6 +21,7 @@ const Potentials = () => {
         setRowsPerPage(+event.target.value)
         setPage(0)
     }
+
     return (
         <Paper sx={{ width: '100%', overflow: 'hidden' }}>
         <TableContainer component={Paper}>
@@ -28,36 +29,37 @@ const Potentials = () => {
                 <TableHead>
                     <TableRow>
                     <TableCell>Relevance Score - Overlap</TableCell>
-     <TableCell>Keyword</TableCell>
-     <TableCell>Search Volume</TableCell>
-     <TableCell>Keyword Difficulty</TableCell>
-     <TableCell>Cost per Click</TableCell>
-     <TableCell>#1 Traffic</TableCell>
-     <TableCell>#1 Conversions</TableCell>
-     <TableCell>#1 Sales</TableCell>
-     <TableCell>#1 Revenue</TableCell>
-      <TableCell>#2 Traffic</TableCell>
-      <TableCell>#2 Conversions</TableCell>
-      <TableCell>#2 Sales</TableCell>
-      <TableCell>#2 Revenue</TableCell>
-      <TableCell>#3 Traffic</TableCell>
-      <TableCell>#3 Conversions</TableCell>
-      <TableCell>#3 Sales</TableCell>
-      <TableCell>#3 Revenue</TableCell>
-      <TableCell>#4 Traffic</TableCell>
-      <TableCell>#4 Conversions</TableCell>
-      <TableCell>#4 Sales</TableCell>
-      <TableCell>#4 Revenue</TableCell>
-      <TableCell>#5 Traffic</TableCell>
-      <TableCell>#5 Conversions</TableCell>
-      <TableCell>#5 Sales</TableCell>
-      <TableCell>#5 Revenue</TableCell>
-      <TableCell>#6 Traffic</TableCell>
+                    <TableCell>Keyword</TableCell>
+                    <TableCell>Search Volume</TableCell>
+                    <TableCell>Keyword Difficulty</TableCell>
+                    <TableCell>Cost per Click</TableCell>
+                    <TableCell>#1 Traffic</TableCell>
+                    <TableCell>#1 Conversions</TableCell>
+                    <TableCell>#1 Sales</TableCell>
+                    <TableCell>#1 Revenue</TableCell>
+                    <TableCell>#2 Traffic</TableCell>
+                    <TableCell>#2 Conversions</TableCell>
+                    <TableCell>#2 Sales</TableCell>
+                    <TableCell>#2 Revenue</TableCell>
+                    <TableCell>#3 Traffic</TableCell>
+                    <TableCell>#3 Conversions</TableCell>
+                    <TableCell>#3 Sales</TableCell>
+                    <TableCell>#3 Revenue</TableCell>
+                    <TableCell>#4 Traffic</TableCell>
+                    <TableCell>#4 Conversions</TableCell>
+                    <TableCell>#4 Sales</TableCell>
+                    <TableCell>#4 Revenue</TableCell>
+                    <TableCell>#5 Traffic</TableCell>
+                    <TableCell>#5 Conversions</TableCell>
+                    <TableCell>#5 Sales</TableCell>
+                    <TableCell>#5 Revenue</TableCell>
+                    <TableCell>#6 Traffic</TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                {AllData.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row, index) => {
+                {AllData.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
                     console.log(row.f2);
+
                     return (
                         <TableRow hover key={row.f2}>
                         <TableCell>{row.f1}</TableCell>

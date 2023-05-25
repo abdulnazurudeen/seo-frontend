@@ -22,6 +22,7 @@ import All from './all'
 
 function TabPanel(props) {
     const { children, value, index, ...other } = props;
+
     return (
       <div
         role="tabpanel"
@@ -52,12 +53,13 @@ TabPanel.propTypes = {
     };
 }
   
-const forcastList = () =>{
+const ForcastList = () =>{
     const router = useRouter()
     const handleClick = (e, path) => {
         e.preventDefault()
         router.push(path)
     };
+    
     const [value, setValue] = React.useState(0);
   
     const handleChange = (event, newValue) => {
@@ -126,4 +128,4 @@ const forcastList = () =>{
     )
 }
 
-export default forcastList
+export default ForcastList

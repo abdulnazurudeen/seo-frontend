@@ -7,7 +7,7 @@ import TableCell from '@mui/material/TableCell'
 import TableContainer from '@mui/material/TableContainer'
 import TablePagination from '@mui/material/TablePagination'
 import { useState, ChangeEvent } from 'react'
-import TopTenData from './top_ten_data'
+import TopTenData from '../../../data/top_ten_data'
 
 const Potentials = () => {
     const [page, setPage] = useState<number>(0)
@@ -21,6 +21,7 @@ const Potentials = () => {
         setRowsPerPage(+event.target.value)
         setPage(0)
     }
+
     return (
         <Paper sx={{ width: '100%', overflow: 'hidden' }}>
         <TableContainer component={Paper}>
@@ -38,8 +39,9 @@ const Potentials = () => {
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                {TopTenData.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row, index) => {
+                {TopTenData.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
                     console.log(row.f2);
+
                     return (
                         <TableRow hover key={row.f2}>
                         <TableCell>{row.f1}</TableCell>

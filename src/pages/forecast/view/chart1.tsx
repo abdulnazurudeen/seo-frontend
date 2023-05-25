@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import { useTheme } from '@mui/material/styles'
+import React from "react";
 import ReactApexcharts from 'src/@core/components/react-apexcharts'
 import Card from '@mui/material/Card'
 import CardHeader from '@mui/material/CardHeader'
@@ -7,7 +6,6 @@ import ChartOneTable from './chart_one_table'
 import Switch from '@mui/material/Switch';
 
 const ViewChartOne = () => {
-  const theme = useTheme()
   const data = {
     labels: [
       "Best (1/2 these keywords in 1-3)",
@@ -68,6 +66,7 @@ const ViewChartOne = () => {
   const handleChange = (event: { target: { checked: boolean | ((prevState: boolean) => boolean); }; }) => {
     setTableChecked(event.target.checked);
   };
+
   return (
     <Card>
     <CardHeader 

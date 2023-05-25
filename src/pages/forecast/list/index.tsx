@@ -2,15 +2,16 @@ import Grid from '@mui/material/Grid'
 import Card from '@mui/material/Card'
 import CardHeader from '@mui/material/CardHeader'
 import Button  from '@mui/material/Button'
-import ForeCastList from './table'
+import ForeCastListTable from './table'
 import { useRouter } from 'next/router'
 
-const forcastList = () =>{
+const ForcastList = () =>{
     const router = useRouter()
     const handleClick = (e: { preventDefault: () => void }, path: string) => {
         e.preventDefault()
         router.push(path)
     };
+    
     return (
         <Grid container spacing={6}>
             <Grid item xs={12}>
@@ -24,7 +25,7 @@ const forcastList = () =>{
                         </Button >
                     }
                  />
-                <ForeCastList />
+                <ForeCastListTable />
                 </Card>
             </Grid>
         </Grid>
@@ -32,4 +33,4 @@ const forcastList = () =>{
     
 }
 
-export default forcastList
+export default ForcastList
