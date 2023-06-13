@@ -22,13 +22,13 @@ import InputAdornment from '@mui/material/InputAdornment'
 import MuiFormControlLabel, { FormControlLabelProps } from '@mui/material/FormControlLabel'
 
 // ** Icons Imports
-import Google from 'mdi-material-ui/Google'
-import Github from 'mdi-material-ui/Github'
-import Twitter from 'mdi-material-ui/Twitter'
-import Facebook from 'mdi-material-ui/Facebook'
+// import Google from 'mdi-material-ui/Google'
+// import Github from 'mdi-material-ui/Github'
+// import Twitter from 'mdi-material-ui/Twitter'
+// import Facebook from 'mdi-material-ui/Facebook'
 import EyeOutline from 'mdi-material-ui/EyeOutline'
 import EyeOffOutline from 'mdi-material-ui/EyeOffOutline'
-
+import axios from 'axios';
 // ** Configs
 import themeConfig from 'src/configs/themeConfig'
 
@@ -62,6 +62,84 @@ const FormControlLabel = styled(MuiFormControlLabel)<FormControlLabelProps>(({ t
     color: theme.palette.text.secondary
   }
 }))
+
+const postRegister = function(){
+  // const apiUrl = 'https://seoforecast-api.bykenshi.com/api';
+  // const data = {
+  //   email : "alex2@gmail.com",
+  //   password: "testtest"
+  // }
+  // axios.get('https://seoforecast-api.bykenshi.com/api/user', {
+  //   headers: {
+  //     'Authorization': 'Token 290fdec91b6460c18d42d6906642236a1232cc80bfb02eaf1881223704184795',
+  //     'Accept': 'application/json',
+  //     'Content-Type': 'application/json'
+  //   }
+  // })
+  //   .then(response => {
+  //     // Handle successful response
+  //     console.log(response.data);
+  //   })
+  //   .catch(error => {
+  //     // Handle error
+  //     console.error(error);
+  //   });
+
+  const headers = {
+    Authorization: "Token 290fdec91b6460c18d42d6906642236a1232cc80bfb02eaf1881223704184795",
+  };
+
+  const postData = {
+    keyword: [
+      "how to earn money"
+    ],
+      conversion_rate: "0.30",
+      lead_to_sale: "90.00",
+      enter_average_order_value: "50000.00",
+      device: "desktop",
+      location: 224,
+      language: 24,
+      os: "windows",
+      no_of_related_keyword: 10,
+      position_values: {
+        pos_1: 25.26,
+        pos_2: 14.97,
+        pos_3: 9.19,
+        pos_4: 6.1,
+        pos_5: 4.12,
+        pos_6: 2.9,
+        pos_7: 2.13,
+        pos_8: 1.61,
+        pos_9: 1.23,
+        pos_10: 0.97
+    },
+      top_three_average: "16.47",
+      four_ten_average: "2.72",
+      report_status: "completed",
+      created_on: "2023-05-02",
+      requested_by: 1
+  }
+  
+  const formData = new FormData();
+  formData.append("email", "mahimaa.alex@gmail.com");
+  formData.append("password", "testtest");
+  
+  axios.post("https://seoforecast-api.bykenshi.com/api/v1/forecast/create", postData, {
+    headers: headers
+  })
+    .then(response => {
+      // Handle successful response
+      console.log(response.data);
+    })
+    .catch(error => {
+      // Handle error
+      console.error(error);
+    });
+  
+
+}
+
+postRegister();
 
 const RegisterPage = () => {
   // ** States
@@ -217,7 +295,7 @@ const RegisterPage = () => {
                 </Link>
               </Typography>
             </Box>
-            <Divider sx={{ my: 5 }}>or</Divider>
+            {/* <Divider sx={{ my: 5 }}>or</Divider>
             <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
               <Link href='/' passHref>
                 <IconButton component='a' onClick={(e: MouseEvent<HTMLElement>) => e.preventDefault()}>
@@ -241,7 +319,7 @@ const RegisterPage = () => {
                   <Google sx={{ color: '#db4437' }} />
                 </IconButton>
               </Link>
-            </Box>
+            </Box> */}
           </form>
         </CardContent>
       </Card>
