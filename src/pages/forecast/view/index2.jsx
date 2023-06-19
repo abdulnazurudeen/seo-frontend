@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { useState, useEffect } from 'react'
 import Grid from '@mui/material/Grid'
 import Card from '@mui/material/Card'
 import CardHeader from '@mui/material/CardHeader'
@@ -19,6 +19,8 @@ import ViewChartTwo from './chart2'
 import TopThree from './top_three'
 import TopTen from './top_ten'
 import All from './all'
+import baseConst from '../../../data/const'
+import axios from 'axios';
 
 function TabPanel(props) {
     const { children, value, index, ...other } = props;
@@ -54,17 +56,118 @@ TabPanel.propTypes = {
 }
   
 const ForcastList = () =>{
+    const [isLoading, setIsLoading] = useState(true);
+    const [dashboardData, setDashboardData] = useState([]);
+    const [getSalesData, setSalesData] = useState([]);
+    const [posistionList, setPositionData] = useState([]);
+    
     const router = useRouter()
     const handleClick = (e, path) => {
         e.preventDefault()
         router.push(path)
     };
     
-    const [value, setValue] = React.useState(0);
+    const [value, setValue] = useState(0);
   
     const handleChange = (event, newValue) => {
       setValue(newValue);
     };
+    
+    useEffect(() => {
+        const token = localStorage.getItem('token');
+        const getForecastDashBoard = async () => {
+            try {
+                const response = await axios.get(baseConst.apiUrl + 'v1/forecast/'+3, {
+                headers: {
+                    Authorization: `Token ${token}`,
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json',
+                },
+                });
+                setDashboardData(response.data);
+                const salesData = [
+                    {
+                        stats: response.data.conversion_rate,
+                        title: 'Conversion Rate %',
+                    },
+                    {
+                        stats: response.data.lead_to_sale,
+                        title: 'Lead to Sale',
+                    },
+                    {
+                        stats: response.data.device,
+                        title: 'Device',
+                    },
+                    {
+                        stats: response.data.location,
+                        title: 'Location',
+                    },
+                    {
+                        stats: response.data.language,
+                        title: 'Language',
+                    },
+                    {
+                        stats: response.data.os,
+                        title: 'OS',
+                    }
+                ];
+
+                const posistionList = [
+                    {
+                        id: 1,
+                        stats: response.data.position_values.pos_1,
+                    },
+                    {
+                        id: 2,
+                        stats: response.data.position_values.pos_2,
+                    },
+                    {
+                        id: 3,
+                        stats: response.data.position_values.pos_3,
+                    },
+                    {
+                        id: 4,
+                        stats: response.data.position_values.pos_4,
+                    },
+                    {
+                        id: 5,
+                        stats: response.data.position_values.pos_5,
+                    },
+                    {
+                        id: 6,
+                        stats: response.data.position_values.pos_6,
+                    },
+                    {
+                        id: 7,
+                        stats: response.data.position_values.pos_7,
+                    },
+                    {
+                        id: 8,
+                        stats: response.data.position_values.pos_8,
+                    },
+                    {
+                        id: 9,
+                        stats: response.data.position_values.pos_9,
+                    },
+                    {
+                        id: 10,
+                        stats: response.data.position_values.pos_10,
+                    }
+                ]
+                setSalesData(salesData);
+                setPositionData(posistionList);
+            } catch (error) {
+                console.error(error);
+            }
+            await new Promise(resolve => setTimeout(resolve, 2000));
+            setIsLoading(false);
+        };
+        getForecastDashBoard();
+    },[]);
+
+    if (isLoading) {
+        return <div>Loading...</div>;
+    }
 
     return (
         <Grid container spacing={6}>
@@ -92,13 +195,13 @@ const ForcastList = () =>{
                             <ApexChartWrapper>
                                 <Grid container spacing={6}>
                                     <Grid item xs={12} md={4}>
-                                        <HighLight />
+                                        <HighLight isLoading={isLoading} orderVal={dashboardData.lead_to_sale} />
                                     </Grid>
                                     <Grid item xs={12} md={8}>
-                                        <HighLight2 />
+                                        <HighLight2 salesData={getSalesData} />
                                     </Grid>
                                     <Grid item xs={12} md={12}>
-                                        <Positions />
+                                        <Positions posistionList={posistionList} />
                                     </Grid>
                                     <Grid item xs={12} md={12}>
                                         <Potentials />

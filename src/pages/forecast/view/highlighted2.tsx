@@ -21,39 +21,39 @@ interface DataType {
   icon: ReactElement
 }
 
-const salesData: DataType[] = [
+const initSalesData: DataType[] = [
   {
-    stats: '0.30%',
+    stats: '',
     title: 'Conversion Rate %',
     color: 'primary',
     icon: <TrendingUp sx={{ fontSize: '1.75rem' }} />
   },
   {
-    stats: '90%',
+    stats: '',
     title: 'Lead to Sale',
     color: 'success',
     icon: <AccountOutline sx={{ fontSize: '1.75rem' }} />
   },
   {
-    stats: 'Desktop',
+    stats: '',
     color: 'warning',
     title: 'Device',
     icon: <CellphoneLink sx={{ fontSize: '1.75rem' }} />
   },
   {
-    stats: 'United States',
+    stats: '',
     color: 'info',
     title: 'Location',
     icon: <CurrencyUsd sx={{ fontSize: '1.75rem' }} />
   },
   {
-    stats: 'English',
+    stats: '',
     color: 'warning',
     title: 'Language',
     icon: <CellphoneLink sx={{ fontSize: '1.75rem' }} />
   },
   {
-    stats: 'Windows',
+    stats: '',
     color: 'info',
     title: 'OS',
     icon: <CurrencyUsd sx={{ fontSize: '1.75rem' }} />
@@ -61,7 +61,8 @@ const salesData: DataType[] = [
 ]
 
 const renderStats = () => {
-  return salesData.map((item: DataType, index: number) => (
+
+  return initSalesData.map((item: DataType, index: number) => (
     <Grid item xs={12} sm={4} key={index}>
       <Box key={index} sx={{ display: 'flex', alignItems: 'center' }}>
         <Avatar
@@ -86,7 +87,18 @@ const renderStats = () => {
   ))
 }
 
-const HighLight2 = () => {
+interface HighLightProps {
+  salesData: [];
+}
+const HighLight2 = ({ salesData }: HighLightProps) => {
+  salesData.map((item: DataType)=>{
+    initSalesData.map(x=>{
+      if(x.title == item.title){
+        x.stats = item.stats;
+      }
+    })
+  });
+
   return (
     <Card>
       <CardHeader

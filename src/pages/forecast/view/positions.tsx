@@ -1,5 +1,3 @@
-// ** React Imports
-import { ReactElement } from 'react'
 import Box from '@mui/material/Box'
 import Grid from '@mui/material/Grid'
 import Card from '@mui/material/Card'
@@ -7,87 +5,53 @@ import Avatar from '@mui/material/Avatar'
 import CardHeader from '@mui/material/CardHeader'
 import Typography from '@mui/material/Typography'
 import CardContent from '@mui/material/CardContent'
-import TrendingUp from 'mdi-material-ui/TrendingUp'
-import CurrencyUsd from 'mdi-material-ui/CurrencyUsd'
-import CellphoneLink from 'mdi-material-ui/CellphoneLink'
-import AccountOutline from 'mdi-material-ui/AccountOutline'
-
-// ** Types
-import { ThemeColor } from 'src/@core/layouts/types'
 import Badge from '@mui/material/Badge'
 
-interface DataType {
-  stats: string
-  title: string
-  color: ThemeColor
-  icon: ReactElement
-}
-
-const salesData: DataType[] = [
+const salesData = [
   {
-    stats: '25.26',
-    title: 'Sales',
+    id: 1,
     color: 'primary',
-    icon: <TrendingUp sx={{ fontSize: '1.75rem' }} />
   },
   {
-    stats: '14.97',
-    title: 'Customers',
+    id: 2,
     color: 'success',
-    icon: <AccountOutline sx={{ fontSize: '1.75rem' }} />
   },
   {
-    stats: '9.19',
+    id: 3,
     color: 'warning',
-    title: 'Products',
-    icon: <CellphoneLink sx={{ fontSize: '1.75rem' }} />
   },
   {
-    stats: '6.1',
+    id: 4,
     color: 'info',
-    title: 'Revenue',
-    icon: <CurrencyUsd sx={{ fontSize: '1.75rem' }} />
   },
   {
-    stats: '4.12',
+    id: 5,
     color: 'warning',
-    title: 'Revenue',
-    icon: <CurrencyUsd sx={{ fontSize: '1.75rem' }} />
   },
   {
-    stats: '2.9',
+    id: 6,
     color: 'primary',
-    title: 'Revenue',
-    icon: <CurrencyUsd sx={{ fontSize: '1.75rem' }} />
   },
   {
-    stats: '2.13',
+    id: 7,
     color: 'warning',
-    title: 'Revenue',
-    icon: <CurrencyUsd sx={{ fontSize: '1.75rem' }} />
   },
   {
-    stats: '1.61',
+    id: 8,
     color: 'secondary',
-    title: 'Revenue',
-    icon: <CurrencyUsd sx={{ fontSize: '1.75rem' }} />
   },
   {
-    stats: '1.23',
+    id: 9,
     color: 'success',
-    title: 'Revenue',
-    icon: <CurrencyUsd sx={{ fontSize: '1.75rem' }} />
   },
   {
-    stats: '0.97',
+    id: 10,
     color: 'info',
-    title: 'Revenue',
-    icon: <CurrencyUsd sx={{ fontSize: '1.75rem' }} />
   }
 ]
 
-const renderStats = () => {
-  return salesData.map((item: DataType, index: number) => (
+const renderStats = (posistionList:any) => {
+  return posistionList.map((item: any, index: number) => (
     <Grid item xs="auto" key={index}>
       <Box key={index} sx={{ display: 'flex', alignItems: 'center' }}>
       <Badge color={item.color} style={{fontSize: '8px'}} badgeContent={index+1} anchorOrigin={{vertical: 'top', horizontal: 'left' }}>
@@ -110,7 +74,18 @@ const renderStats = () => {
   ))
 }
 
-const Positions = () => {
+interface PositionsProps {
+  posistionList: any;
+}
+const Positions = ({ posistionList }: PositionsProps) => {
+  posistionList.map((item: any)=>{
+    salesData.map(x=>{
+      if(x.id == item.id){
+        item.color = x.color;
+      }
+    })
+  });
+
   return (
     <Card>
       <CardHeader
@@ -132,7 +107,7 @@ const Positions = () => {
       />
       <CardContent sx={{ pt: theme => `${theme.spacing(3)} !important` }}>
         <Grid container spacing={[5, 0]}>
-          {renderStats()}
+          {renderStats(posistionList)}
         </Grid>
       </CardContent>
     </Card>

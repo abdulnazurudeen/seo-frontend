@@ -18,12 +18,21 @@ const TrophyImg = styled('img')({
   position: 'absolute'
 })
 
-const HighLight = () => {
-  // ** Hook
+interface HighLightProps {
+  isLoading: boolean;
+  orderVal: number;
+}
+
+const HighLight = ({ isLoading, orderVal }: HighLightProps) => {
   const theme = useTheme()
-
   const imageSrc = theme.palette.mode === 'light' ? 'triangle-light.png' : 'triangle-dark.png'
-
+  setTimeout(()=>{
+    console.log(orderVal)
+  }, 1000)
+  if(isLoading){
+    return null;
+  }
+  
   return (
     <Card sx={{ position: 'relative' }}>
       <CardContent>
@@ -32,7 +41,7 @@ const HighLight = () => {
           Based on the customer data
         </Typography>
         <Typography variant='h5' sx={{ my: 4, color: 'primary.main' }}>
-        $50,000.00
+        ${orderVal}
         </Typography>
         <Button size='small' variant='contained'>
           View More
