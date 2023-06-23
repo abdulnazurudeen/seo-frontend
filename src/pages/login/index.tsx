@@ -2,7 +2,7 @@
 import { MouseEvent, ReactNode, useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import axios from 'axios';
+import axios from 'axios'
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
 import Checkbox from '@mui/material/Checkbox'
@@ -55,7 +55,7 @@ const FormControlLabel = styled(MuiFormControlLabel)<FormControlLabelProps>(({ t
 }))
 
 const LoginPage = () => {
-  const router = useRouter();
+  const router = useRouter()
   const [values, setValues] = useState<State>({
     password: '',
     showPassword: false
@@ -66,22 +66,22 @@ const LoginPage = () => {
   const handleMouseDownPassword = (event: MouseEvent<HTMLButtonElement>) => {
     event.preventDefault()
   }
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
   const handleLoginProcess = async () => {
     try {
       const param = {
         email: email,
         password: password
-      };
-      const response = await axios.post('https://seoforecast-api.bykenshi.com/api/login/', param);
-      const token = response.data.token;
-      localStorage.setItem('token', token);
-      router.push('/');
+      }
+      const response = await axios.post('https://seoforecast-api.bykenshi.com/api/login/', param)
+      const token = response.data.token
+      localStorage.setItem('token', token)
+      router.push('/')
     } catch (error) {
-      console.error(error);
+      console.error(error)
     }
-  };
+  }
 
   return (
     <Box className='content-center'>
@@ -108,14 +108,22 @@ const LoginPage = () => {
             <Typography variant='body2'>Please sign-in to your account and start the adventure</Typography>
           </Box>
           <form noValidate autoComplete='off' onSubmit={e => e.preventDefault()}>
-            <TextField autoFocus fullWidth id='email' value={email} label='Email' sx={{ marginBottom: 4 }} onChange={(e) => setEmail(e.target.value)} />
+            <TextField
+              autoFocus
+              fullWidth
+              id='email'
+              value={email}
+              label='Email'
+              sx={{ marginBottom: 4 }}
+              onChange={e => setEmail(e.target.value)}
+            />
             <FormControl fullWidth>
               <InputLabel htmlFor='auth-login-password'>Password</InputLabel>
               <OutlinedInput
                 label='Password'
                 value={password}
                 id='auth-login-password'
-                onChange={(e) => setPassword(e.target.value)}
+                onChange={e => setPassword(e.target.value)}
                 type={values.showPassword ? 'text' : 'password'}
                 endAdornment={
                   <InputAdornment position='end'>
@@ -139,13 +147,7 @@ const LoginPage = () => {
                 <LinkStyled onClick={e => e.preventDefault()}>Forgot Password?</LinkStyled>
               </Link>
             </Box>
-            <Button
-              fullWidth
-              size='large'
-              variant='contained'
-              sx={{ marginBottom: 7 }}
-              onClick={handleLoginProcess}
-            >
+            <Button fullWidth size='large' variant='contained' sx={{ marginBottom: 7 }} onClick={handleLoginProcess}>
               Login
             </Button>
             <Box sx={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', justifyContent: 'center' }}>
@@ -153,7 +155,7 @@ const LoginPage = () => {
                 New on our platform?
               </Typography>
               <Typography variant='body2'>
-                <Link passHref href='/pages/register'>
+                <Link passHref href='/register'>
                   <LinkStyled>Create an account</LinkStyled>
                 </Link>
               </Typography>
