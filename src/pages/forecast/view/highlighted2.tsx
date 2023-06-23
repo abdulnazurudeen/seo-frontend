@@ -61,7 +61,6 @@ const initSalesData: DataType[] = [
 ]
 
 const renderStats = () => {
-
   return initSalesData.map((item: DataType, index: number) => (
     <Grid item xs={12} mb={5} sm={6} key={index}>
       <Box key={index} sx={{ display: 'flex', alignItems: 'center' }}>
@@ -88,22 +87,22 @@ const renderStats = () => {
 }
 
 interface HighLightProps {
-  salesData: [];
+  salesData: []
 }
 const HighLight2 = ({ salesData }: HighLightProps) => {
-  salesData.map((item: DataType)=>{
-    initSalesData.map(x=>{
-      if(x.title == item.title){
-        x.stats = item.stats;
+  salesData?.map((item: DataType) => {
+    initSalesData.map(x => {
+      if (x.title == item.title) {
+        x.stats = item.stats
       }
     })
-  });
+  })
 
   return (
     <Card>
       <CardHeader
         title='Customer Information'
-        style={{ paddingBottom: 0}}
+        style={{ paddingBottom: 0 }}
         titleTypographyProps={{
           sx: {
             mb: 0.5,

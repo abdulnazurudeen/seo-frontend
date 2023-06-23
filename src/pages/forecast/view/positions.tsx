@@ -10,64 +10,71 @@ import Badge from '@mui/material/Badge'
 const salesData = [
   {
     id: 1,
-    color: 'primary',
+    color: 'primary'
   },
   {
     id: 2,
-    color: 'success',
+    color: 'success'
   },
   {
     id: 3,
-    color: 'warning',
+    color: 'warning'
   },
   {
     id: 4,
-    color: 'info',
+    color: 'info'
   },
   {
     id: 5,
-    color: 'warning',
+    color: 'warning'
   },
   {
     id: 6,
-    color: 'primary',
+    color: 'primary'
   },
   {
     id: 7,
-    color: 'warning',
+    color: 'warning'
   },
   {
     id: 8,
-    color: 'secondary',
+    color: 'secondary'
   },
   {
     id: 9,
-    color: 'success',
+    color: 'success'
   },
   {
     id: 10,
-    color: 'info',
+    color: 'info'
   }
 ]
 
-const renderStats = (posistionList:any) => {
-  return posistionList.map((item: any, index: number) => (
-    <Grid item xs="auto" key={index}>
+const renderStats = (posistionList: any) => {
+  return posistionList?.map((item: any, index: number) => (
+    <Grid item xs='auto' key={index}>
       <Box key={index} sx={{ display: 'flex', alignItems: 'center' }}>
-      <Badge color={item.color} style={{fontSize: '8px'}} badgeContent={index+1} anchorOrigin={{vertical: 'top', horizontal: 'left' }}>
-        <Avatar
-          variant='rounded'
-          sx={{
-            mr: 5,
-            width: 75,
-            height: 44,
-            boxShadow: 3,
-            color: 'common.white',
-            backgroundColor: `${item.color}.main`
-          }}
+        <Badge
+          color={item.color}
+          style={{ fontSize: '8px' }}
+          badgeContent={index + 1}
+          anchorOrigin={{ vertical: 'top', horizontal: 'left' }}
         >
-          <Typography variant='h6' style={{ fontSize: 13, color: '#fff' }}>{item.stats}</Typography>
-        </Avatar>
+          <Avatar
+            variant='rounded'
+            sx={{
+              mr: 5,
+              width: 75,
+              height: 44,
+              boxShadow: 3,
+              color: 'common.white',
+              backgroundColor: `${item.color}.main`
+            }}
+          >
+            <Typography variant='h6' style={{ fontSize: 13, color: '#fff' }}>
+              {item.stats}
+            </Typography>
+          </Avatar>
         </Badge>
       </Box>
     </Grid>
@@ -75,16 +82,16 @@ const renderStats = (posistionList:any) => {
 }
 
 interface PositionsProps {
-  posistionList: any;
+  posistionList: any
 }
 const Positions = ({ posistionList }: PositionsProps) => {
-  posistionList.map((item: any)=>{
-    salesData.map(x=>{
-      if(x.id == item.id){
-        item.color = x.color;
+  posistionList?.map((item: any) => {
+    salesData.map(x => {
+      if (x.id == item.id) {
+        item.color = x.color
       }
     })
-  });
+  })
 
   return (
     <Card>
@@ -93,7 +100,7 @@ const Positions = ({ posistionList }: PositionsProps) => {
         subheader={
           <Typography variant='body2'>
             <Box component='span' sx={{ fontWeight: 600, color: 'text.primary' }}>
-                Based on Research
+              Based on Research
             </Box>{' '}
           </Typography>
         }
