@@ -63,7 +63,7 @@ const initSalesData: DataType[] = [
 const renderStats = () => {
 
   return initSalesData.map((item: DataType, index: number) => (
-    <Grid item xs={12} sm={4} key={index}>
+    <Grid item xs={12} mb={5} sm={6} key={index}>
       <Box key={index} sx={{ display: 'flex', alignItems: 'center' }}>
         <Avatar
           variant='rounded'

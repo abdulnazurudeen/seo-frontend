@@ -1,5 +1,5 @@
 // ** React Imports
-import { useState, Fragment, MouseEvent, ReactNode } from 'react'
+import { useState, Fragment, MouseEvent, ReactNode, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
 import Box from '@mui/material/Box'
@@ -22,6 +22,8 @@ import axios from 'axios';
 import themeConfig from 'src/configs/themeConfig'
 import BlankLayout from 'src/@core/layouts/BlankLayout'
 import FooterIllustrationsV1 from 'src/views/pages/auth/FooterIllustration'
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 interface State {
   password: string
@@ -67,13 +69,33 @@ const RegisterPage = () => {
         password: password
       };
       const response = await axios.post('https://seoforecast-api.bykenshi.com/api/register/', param);
+      toast.success('Your Account has been Created Successfully!', {
+          position: toast.POSITION.TOP_RIGHT
+      });
       const token = response.data.token;
       localStorage.setItem('token', token);
       router.push('/');
-    } catch (error) {
-      console.error(error);
+    } catch (error: any) {
+      if(error.response.data.email){
+        toast.error(error.response.data.email[0], {
+          position: toast.POSITION.TOP_RIGHT
+        });
+      }
+      else{
+        toast.error(error.response.data, {
+          position: toast.POSITION.TOP_RIGHT
+        });
+      }
+      console.log(error);
     }
   };
+
+  useEffect(()=>{
+    const trackToken = localStorage.getItem('token');
+    if(trackToken){
+      router.push('/');
+    }
+  })
 
   return (
     <Box className='content-center'>

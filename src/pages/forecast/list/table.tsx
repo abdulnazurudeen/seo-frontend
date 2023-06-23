@@ -49,6 +49,7 @@ const ForeCastListTable = () => {
   };
   useEffect(() => {
     const token = localStorage.getItem('token');
+    console.log(token)
     const getForecastList = async () => {
       try {
         const response = await axios.get(baseConst.apiUrl + 'v1/forecast/', {

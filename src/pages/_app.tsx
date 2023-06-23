@@ -39,7 +39,7 @@ const App = (props: ExtendedAppProps) => {
     const checkToken = async () => {
       const token = localStorage.getItem('token');
       const isAuthenticated = token !== null && token !== undefined;
-      if (!isAuthenticated && !router.pathname.includes('/login')) {
+      if (!isAuthenticated && !router.pathname.includes('/login') && !router.pathname.includes('/register')) {
         router.push('/login');
       }
     };

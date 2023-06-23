@@ -102,11 +102,11 @@ const ForcastList = () =>{
                             title: 'Device',
                         },
                         {
-                            stats: response.data.location,
+                            stats: response.data.location_object.location_name,
                             title: 'Location',
                         },
                         {
-                            stats: response.data.language,
+                            stats: response.data.language_object.language_name,
                             title: 'Language',
                         },
                         {
