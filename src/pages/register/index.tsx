@@ -69,7 +69,7 @@ const RegisterPage = () => {
         email: email,
         password: password
       }
-      const response = await axios.post(baseConst.apiUrl + '/register/', param)
+      const response = await axios.post(baseConst.apiUrl + 'register/', param)
       toast.success('Your Account has been Created Successfully!', {
         position: toast.POSITION.TOP_RIGHT
       })
