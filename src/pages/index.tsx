@@ -13,6 +13,7 @@ import { useEffect } from 'react'
 const Dashboard = () => {
   useEffect(() => {
     const token = localStorage.getItem('token')
+
     // const { pathname } = Router
     if (token) {
       Router.push('/forecast/list')
@@ -20,7 +21,8 @@ const Dashboard = () => {
       Router.push('/login')
     }
   })
-  return <ApexChartWrapper />
+  
+return <ApexChartWrapper />
 }
 
 export default Dashboard

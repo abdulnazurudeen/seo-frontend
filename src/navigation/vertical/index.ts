@@ -29,6 +29,7 @@ const navigation = (): VerticalNavItemsType => {
       icon: Login,
       path: '/forecast/new'
     },
+
     // {
     //   sectionTitle: 'Plans'
     // },
