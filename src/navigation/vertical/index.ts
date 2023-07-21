@@ -11,37 +11,37 @@ import { VerticalNavItemsType } from 'src/@core/layouts/types'
 
 const navigation = (): VerticalNavItemsType => {
   return [
-    {
-      title: 'Dashboard',
-      icon: HomeOutline,
-      path: '/'
-    },
+    // {
+    //   title: 'Dashboard',
+    //   icon: HomeOutline,
+    //   path: '/'
+    // },
     {
       sectionTitle: 'Forecasting'
     },
     {
       title: 'Forecast List',
       icon: Table,
-      path: '/forecast/list',
+      path: '/forecast/list'
     },
     {
       title: 'New Forecast',
       icon: Login,
-      path: '/forecast/new',
+      path: '/forecast/new'
     },
-    {
-      sectionTitle: 'Plans',
-    },
-    {
-      title: 'Plans List',
-      icon: Table,
-      path: '/plan/list',
-    },
-    {
-      title: 'My Plans',
-      icon: CubeOutline,
-      path: '/plan/my_plans',
-    },
+    // {
+    //   sectionTitle: 'Plans'
+    // },
+    // {
+    //   title: 'Plans List',
+    //   icon: Table,
+    //   path: '/plan/list'
+    // },
+    // {
+    //   title: 'My Plans',
+    //   icon: CubeOutline,
+    //   path: '/plan/my_plans'
+    // },
     {
       sectionTitle: 'Profile'
     },
@@ -54,7 +54,7 @@ const navigation = (): VerticalNavItemsType => {
       title: 'Contact Us',
       path: '/contact_us',
       icon: GoogleCirclesExtended
-    },
+    }
   ]
 }
 

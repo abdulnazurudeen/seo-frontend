@@ -17,7 +17,7 @@ import { styled } from '@mui/material/styles'
 import MuiCard, { CardProps } from '@mui/material/Card'
 import InputAdornment from '@mui/material/InputAdornment'
 import MuiFormControlLabel, { FormControlLabelProps } from '@mui/material/FormControlLabel'
-
+import baseConst from '../../../src/data/const'
 // ** Icons Imports
 import EyeOutline from 'mdi-material-ui/EyeOutline'
 import EyeOffOutline from 'mdi-material-ui/EyeOffOutline'
@@ -74,10 +74,10 @@ const LoginPage = () => {
         email: email,
         password: password
       }
-      const response = await axios.post('https://seoforecast-api.bykenshi.com/api/login/', param)
+      const response = await axios.post(baseConst.apiUrl + '/login/', param)
       const token = response.data.token
       localStorage.setItem('token', token)
-      router.push('/')
+      router.push('/forecast/list')
     } catch (error) {
       console.error(error)
     }

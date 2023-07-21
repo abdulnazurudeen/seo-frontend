@@ -1,5 +1,4 @@
-const baseConst = 
-{
-    apiUrl: 'https://seoforecast-api.bykenshi.com/api/',
+const baseConst = {
+  apiUrl: process.env.APIURL
 }
-export default baseConst;
+export default baseConst

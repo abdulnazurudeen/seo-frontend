@@ -1,6 +1,9 @@
 const path = require('path')
 
 module.exports = {
+  env: {
+    APIURL: process.env.NEXT_PUBLIC_APIURL
+  },
   trailingSlash: true,
   reactStrictMode: false,
   experimental: {
@@ -8,7 +11,7 @@ module.exports = {
     jsconfigPaths: true // enables it for both jsconfig.json and tsconfig.json
   },
   typescript: {
-    ignoreBuildErrors: true,
+    ignoreBuildErrors: true
   },
   webpack: config => {
     config.resolve.alias = {

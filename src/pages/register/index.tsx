@@ -18,12 +18,13 @@ import InputAdornment from '@mui/material/InputAdornment'
 import MuiFormControlLabel, { FormControlLabelProps } from '@mui/material/FormControlLabel'
 import EyeOutline from 'mdi-material-ui/EyeOutline'
 import EyeOffOutline from 'mdi-material-ui/EyeOffOutline'
-import axios from 'axios';
+import axios from 'axios'
 import themeConfig from 'src/configs/themeConfig'
 import BlankLayout from 'src/@core/layouts/BlankLayout'
 import FooterIllustrationsV1 from 'src/views/pages/auth/FooterIllustration'
-import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { toast } from 'react-toastify'
+import baseConst from '../../../src/data/const'
+import 'react-toastify/dist/ReactToastify.css'
 
 interface State {
   password: string
@@ -59,41 +60,40 @@ const RegisterPage = () => {
   const handleMouseDownPassword = (event: MouseEvent<HTMLButtonElement>) => {
     event.preventDefault()
   }
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
   const router = useRouter()
   const handleRegistration = async () => {
     try {
       const param = {
         email: email,
         password: password
-      };
-      const response = await axios.post('https://seoforecast-api.bykenshi.com/api/register/', param);
+      }
+      const response = await axios.post(baseConst.apiUrl + '/register/', param)
       toast.success('Your Account has been Created Successfully!', {
-          position: toast.POSITION.TOP_RIGHT
-      });
-      const token = response.data.token;
-      localStorage.setItem('token', token);
-      router.push('/');
+        position: toast.POSITION.TOP_RIGHT
+      })
+      const token = response.data.token
+      localStorage.setItem('token', token)
+      router.push('/')
     } catch (error: any) {
-      if(error.response.data.email){
+      if (error.response.data.email) {
         toast.error(error.response.data.email[0], {
           position: toast.POSITION.TOP_RIGHT
-        });
-      }
-      else{
+        })
+      } else {
         toast.error(error.response.data, {
           position: toast.POSITION.TOP_RIGHT
-        });
+        })
       }
-      console.log(error);
+      console.log(error)
     }
-  };
+  }
 
-  useEffect(()=>{
-    const trackToken = localStorage.getItem('token');
-    if(trackToken){
-      router.push('/');
+  useEffect(() => {
+    const trackToken = localStorage.getItem('token')
+    if (trackToken) {
+      router.push('/')
     }
   })
 
@@ -123,14 +123,21 @@ const RegisterPage = () => {
           </Box>
           <form noValidate autoComplete='off' onSubmit={e => e.preventDefault()}>
             {/* <TextField autoFocus fullWidth id='username' label='Username' sx={{ marginBottom: 4 }} /> */}
-            <TextField fullWidth value={email} type='email' label='Email' sx={{ marginBottom: 4 }} onChange={(e) => setEmail(e.target.value)} />
+            <TextField
+              fullWidth
+              value={email}
+              type='email'
+              label='Email'
+              sx={{ marginBottom: 4 }}
+              onChange={e => setEmail(e.target.value)}
+            />
             <FormControl fullWidth>
               <InputLabel htmlFor='auth-register-password'>Password</InputLabel>
               <OutlinedInput
                 label='Password'
                 value={password}
                 id='auth-register-password'
-                onChange={(e) => setPassword(e.target.value)}
+                onChange={e => setPassword(e.target.value)}
                 type={values.showPassword ? 'text' : 'password'}
                 endAdornment={
                   <InputAdornment position='end'>
@@ -159,7 +166,14 @@ const RegisterPage = () => {
                 </Fragment>
               }
             />
-            <Button fullWidth size='large' type='submit' variant='contained' sx={{ marginBottom: 7 }} onClick={handleRegistration}>
+            <Button
+              fullWidth
+              size='large'
+              type='submit'
+              variant='contained'
+              sx={{ marginBottom: 7 }}
+              onClick={handleRegistration}
+            >
               Sign up
             </Button>
             <Box sx={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', justifyContent: 'center' }}>
