@@ -282,7 +282,7 @@ const ForeCastForm = () => {
       console.error(error)
     }
   }
-  console.log(positions)
+
   return (
     <Card>
       <CardHeader
