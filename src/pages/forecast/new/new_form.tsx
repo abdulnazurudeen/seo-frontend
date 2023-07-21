@@ -188,7 +188,7 @@ const ForeCastForm = () => {
     postRegister()
     fetchData()
     getCurrentUser()
-  }, [])
+  })
 
   const validateForm = () => {
     const validationErrors: { [key: string]: string } = {}

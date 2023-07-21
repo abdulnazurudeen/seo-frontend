@@ -167,7 +167,7 @@ const ForcastList = () => {
       }
       getForecastDashBoard()
     }
-  }, [])
+  }, [id])
 
   if (isLoading) {
     return <div>Loading...</div>
