@@ -177,14 +177,16 @@ const ForcastList = () => {
           <CardHeader
             title={
               <>
-                <span>Forcasting Report</span> - <span style={{ color: '#f00' }}>How to become a seed investor</span>
+                <span>Forcasting Report</span> - <span style={{ color: '#f00' }}>{dashboardData.keyword}</span>
               </>
             }
             titleTypographyProps={{ variant: 'h6' }}
             action={
-              <Button variant='contained' color='warning' onClick={e => handleClick(e, '/forecast/list')}>
-                Forcast List
-              </Button>
+              <>
+                <Button variant='contained' color='warning' onClick={e => handleClick(e, '/forecast/list')}>
+                  Forcast List
+                </Button>
+              </>
             }
           />
           <Box sx={{ width: '100%' }}>

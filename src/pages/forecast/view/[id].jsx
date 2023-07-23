@@ -81,7 +81,7 @@ const ForcastList = () => {
       const { token } = cookie
       const getForecastDashBoard = async () => {
         try {
-          const response = await axios.get(baseConst.apiUrl + 'v1/forecast/' + id, {
+          const response = await axios.get(`${baseConst.apiUrl}v1/forecast/${id}/`, {
             headers: {
               Authorization: `Token ${token}`,
               Accept: 'application/json',
@@ -181,13 +181,20 @@ const ForcastList = () => {
           <CardHeader
             title={
               <>
-                <span>Forcasting Report</span> - <span style={{ color: '#f00' }}>How to become a seed investor</span>
+                <span>Forcasting Report</span> - <span style={{ color: '#f00' }}>{dashboardData?.keyword}</span>
               </>
             }
             titleTypographyProps={{ variant: 'h6' }}
             action={
+              <>
+                <Button variant='contained' color='warning' onClick={e => handleClick(e, '/forecast/list')}>
+                  Forcast List
+                </Button>
+              </>
+            }
+            subheader={
               <Button variant='contained' color='warning' onClick={e => handleClick(e, '/forecast/list')}>
-                Forcast List
+                {dashboardData.report_status}
               </Button>
             }
           />
