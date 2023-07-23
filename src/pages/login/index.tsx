@@ -1,7 +1,8 @@
 // ** React Imports
-import { MouseEvent, ReactNode, useState } from 'react'
+import { MouseEvent, ReactNode, useEffect, useState } from 'react'
 import Link from 'next/link'
-import { useRouter } from 'next/router'
+import Router, { useRouter } from 'next/router'
+
 import axios from 'axios'
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
@@ -31,12 +32,19 @@ import BlankLayout from 'src/@core/layouts/BlankLayout'
 
 // ** Demo Imports
 import FooterIllustrationsV1 from 'src/views/pages/auth/FooterIllustration'
+import { Alert } from '@mui/material'
+import { useCookies } from 'react-cookie'
 
 interface State {
   password: string
   showPassword: boolean
 }
 
+interface ErrorState {
+  email: string
+  password: string
+  [key: string]: string
+}
 // ** Styled Components
 const Card = styled(MuiCard)<CardProps>(({ theme }) => ({
   [theme.breakpoints.up('sm')]: { width: '28rem' }
@@ -56,6 +64,7 @@ const FormControlLabel = styled(MuiFormControlLabel)<FormControlLabelProps>(({ t
 }))
 
 const LoginPage = () => {
+  const [cookie, setCookie] = useCookies(['token'])
   const router = useRouter()
   const [values, setValues] = useState<State>({
     password: '',
@@ -69,7 +78,16 @@ const LoginPage = () => {
   }
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [errors, setErrors] = useState<ErrorState>({
+    email: '',
+    password: ''
+  })
+
   const handleLoginProcess = async () => {
+    setErrors({
+      email: '',
+      password: ''
+    })
     try {
       const param = {
         email: email,
@@ -77,12 +95,20 @@ const LoginPage = () => {
       }
       const response = await axios.post(baseConst.apiUrl + 'login/', param)
       const token = response.data.token
-      localStorage.setItem('token', token)
+
+      setCookie('token', token, { path: '/' })
       router.push('/forecast/list')
-    } catch (error) {
-      console.error(error)
+      Router.push('/forecast/list')
+    } catch (err: any) {
+      console.error('error', typeof err)
+      const {
+        response: { data }
+      } = err
+      setErrors(data)
     }
   }
+
+  useEffect(() => {}, [cookie])
 
   return (
     <Box className='content-center'>
@@ -107,6 +133,19 @@ const LoginPage = () => {
               Welcome to {themeConfig.templateName}! 👋🏻
             </Typography>
             <Typography variant='body2'>Please sign-in to your account and start the adventure</Typography>
+            {errors &&
+              Object.keys(errors).map(err => {
+                // Check if the key exists in the ErrorState interface or if it is an additional error
+                return (
+                  ['email', 'password'].indexOf(err) < 0 && (
+                    <>
+                      <Alert severity='error' className='error alert'>
+                        {errors[err]}
+                      </Alert>
+                    </>
+                  )
+                )
+              })}
           </Box>
           <form noValidate autoComplete='off' onSubmit={e => e.preventDefault()}>
             <TextField
@@ -118,9 +157,15 @@ const LoginPage = () => {
               sx={{ marginBottom: 4 }}
               onChange={e => setEmail(e.target.value)}
             />
+            {errors?.email && (
+              <Alert severity='error' className='error alert'>
+                {errors.email}
+              </Alert>
+            )}
             <FormControl fullWidth>
               <InputLabel htmlFor='auth-login-password'>Password</InputLabel>
               <OutlinedInput
+                error={errors?.password != ''}
                 label='Password'
                 value={password}
                 id='auth-login-password'
@@ -140,6 +185,11 @@ const LoginPage = () => {
                 }
               />
             </FormControl>
+            {errors?.password && (
+              <Alert severity='error' className='error alert'>
+                {errors.password}
+              </Alert>
+            )}
             <Box
               sx={{ mb: 4, display: 'flex', alignItems: 'center', flexWrap: 'wrap', justifyContent: 'space-between' }}
             >

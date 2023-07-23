@@ -1,5 +1,6 @@
 // ** React Imports
 import { useState, SyntheticEvent, Fragment } from 'react'
+import { useCookies } from 'react-cookie'
 
 // ** Next Import
 import { useRouter } from 'next/router'
@@ -34,6 +35,7 @@ const BadgeContentSpan = styled('span')(({ theme }) => ({
 const UserDropdown = () => {
   // ** States
   const [anchorEl, setAnchorEl] = useState<Element | null>(null)
+  const [cookies, setCookie, removeCookie] = useCookies(['token'])
 
   // ** Hooks
   const router = useRouter()
@@ -49,9 +51,9 @@ const UserDropdown = () => {
     setAnchorEl(null)
   }
 
-  const handleLogout = () =>{
-      localStorage.removeItem('token');
-      router.push('/login')
+  const handleLogout = () => {
+    removeCookie('token')
+    router.push('/login')
   }
 
   const styles = {

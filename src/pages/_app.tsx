@@ -2,7 +2,7 @@ import Head from 'next/head'
 import { Router, useRouter } from 'next/router'
 import type { NextPage } from 'next'
 import type { AppProps } from 'next/app'
-import { useEffect } from 'react';
+import { useEffect } from 'react'
 import NProgress from 'nprogress'
 import { CacheProvider } from '@emotion/react'
 import type { EmotionCache } from '@emotion/cache'
@@ -12,9 +12,12 @@ import ThemeComponent from 'src/@core/theme/ThemeComponent'
 import { SettingsConsumer, SettingsProvider } from 'src/@core/context/settingsContext'
 import { createEmotionCache } from 'src/@core/utils/create-emotion-cache'
 import 'react-perfect-scrollbar/dist/css/styles.css'
-import 'react-toastify/dist/ReactToastify.css';
+import 'react-toastify/dist/ReactToastify.css'
 import '../../styles/globals.css'
-import { ToastContainer } from 'react-toastify';
+import { ToastContainer } from 'react-toastify'
+import { CookiesProvider } from 'react-cookie'
+import { useCookies } from 'react-cookie'
+import { getCurrentUser } from 'src/@core/utils/helper'
 
 type ExtendedAppProps = AppProps & {
   Component: NextPage
@@ -34,42 +37,46 @@ if (themeConfig.routingLoader) {
   })
 }
 const App = (props: ExtendedAppProps) => {
-  const router = useRouter();
+  const router = useRouter()
+  const [cookie] = useCookies(['token'])
   useEffect(() => {
+    const { token } = cookie
+    console.log('APP inside ', token)
     const checkToken = async () => {
-      const token = localStorage.getItem('token');
-      const isAuthenticated = token !== null && token !== undefined;
+      console.log('Im checking', router.pathname)
+      const user = await getCurrentUser(token)
+      const isAuthenticated = token !== null && token !== undefined && user
       if (!isAuthenticated && !router.pathname.includes('/login') && !router.pathname.includes('/register')) {
-        router.push('/login');
+        router.push('/login')
+      } else {
+        router.push('/')
       }
-    };
-    checkToken();
-  });
+    }
+    checkToken()
+  }, [cookie])
   const { Component, emotionCache = clientSideEmotionCache, pageProps } = props
   const getLayout = Component.getLayout ?? (page => <UserLayout>{page}</UserLayout>)
 
   return (
-    <CacheProvider value={emotionCache}>
-      <Head>
-        <title>{`${themeConfig.templateName} - SEO Tool`}</title>
-        <meta
-          name='description'
-          content={`${themeConfig.templateName}  - SEO Tool`}
-        />
-        <meta name='keywords' content='' />
-        <meta name='viewport' content='initial-scale=1, width=device-width' />
-      </Head>
+    <CookiesProvider>
+      <CacheProvider value={emotionCache}>
+        <Head>
+          <title>{`${themeConfig.templateName} - SEO Tool`}</title>
+          <meta name='description' content={`${themeConfig.templateName}  - SEO Tool`} />
+          <meta name='keywords' content='' />
+          <meta name='viewport' content='initial-scale=1, width=device-width' />
+        </Head>
 
-      <SettingsProvider>
-        <SettingsConsumer>
-          {({ settings }) => {
-
-            return <ThemeComponent settings={settings}>{getLayout(<Component {...pageProps} />)}</ThemeComponent>
-          }}
-        </SettingsConsumer>
-      </SettingsProvider>
-      <ToastContainer />
-    </CacheProvider>
+        <SettingsProvider>
+          <SettingsConsumer>
+            {({ settings }) => {
+              return <ThemeComponent settings={settings}>{getLayout(<Component {...pageProps} />)}</ThemeComponent>
+            }}
+          </SettingsConsumer>
+        </SettingsProvider>
+        <ToastContainer />
+      </CacheProvider>
+    </CookiesProvider>
   )
 }
 
@@ -81,4 +88,4 @@ const App = (props: ExtendedAppProps) => {
 //   return { pageProps };
 // };
 
-export default App;
+export default App

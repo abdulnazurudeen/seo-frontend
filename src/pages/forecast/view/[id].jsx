@@ -21,6 +21,7 @@ import TopTen from './top_ten'
 import All from './all'
 import baseConst from '../../../data/const'
 import axios from 'axios'
+import { useCookies } from 'react-cookie'
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props
@@ -74,10 +75,10 @@ const ForcastList = () => {
   }
 
   const { id } = router.query
-
+  const [cookie] = useCookies(['token'])
   useEffect(() => {
     if (id) {
-      const token = localStorage.getItem('token')
+      const { token } = cookie
       const getForecastDashBoard = async () => {
         try {
           const response = await axios.get(baseConst.apiUrl + 'v1/forecast/' + id, {
@@ -167,7 +168,7 @@ const ForcastList = () => {
       }
       getForecastDashBoard()
     }
-  }, [id])
+  }, [id, cookie])
 
   if (isLoading) {
     return <div>Loading...</div>

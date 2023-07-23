@@ -19,6 +19,7 @@ import FormHelperText from '@mui/material/FormHelperText'
 import Typography from '@mui/material/Typography'
 import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import { useCookies } from 'react-cookie'
 
 interface Language {
   id: number
@@ -37,6 +38,8 @@ interface Position {
 }
 let userId = 4
 const ForeCastForm = () => {
+  const [cookie] = useCookies(['token'])
+
   const [langList, setLanguages] = useState<Language[]>([])
   const [selectedLanguage, setSelectedLanguage] = useState<Language | null>(null)
   const [selectedLocation, setSelectedLocation] = useState<Location | null>(null)
@@ -87,7 +90,7 @@ const ForeCastForm = () => {
     setFields(updatedFields)
   }
   const handleLocationSearch = async (searchValue: string) => {
-    const token = localStorage.getItem('token')
+    const { token } = cookie
     if (searchValue.length >= 3) {
       try {
         const response = await axios.get(baseConst.apiUrl + `v1/forecast/locations/?limit=20&search=${searchValue}`, {
@@ -130,10 +133,10 @@ const ForeCastForm = () => {
   }
 
   useEffect(() => {
-    const token = localStorage.getItem('token')
+    const { token } = cookie
     const getCurrentUser = async () => {
       try {
-        const response = await axios.get(baseConst.apiUrl + 'user', {
+        const response = await axios.get(baseConst.apiUrl + 'user/', {
           headers: {
             Authorization: `Token ${token}`,
             Accept: 'application/json',
@@ -188,7 +191,7 @@ const ForeCastForm = () => {
     postRegister()
     fetchData()
     getCurrentUser()
-  })
+  }, [cookie])
 
   const validateForm = () => {
     const validationErrors: { [key: string]: string } = {}
@@ -231,7 +234,7 @@ const ForeCastForm = () => {
     if (validateForm()) {
       console.log(errors)
     }
-    const token = localStorage.getItem('token')
+    const { token } = cookie
     const getPosVal: any = {}
     positions.map(item => {
       getPosVal[item.name] = item.value

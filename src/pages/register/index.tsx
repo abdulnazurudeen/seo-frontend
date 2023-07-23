@@ -25,6 +25,7 @@ import FooterIllustrationsV1 from 'src/views/pages/auth/FooterIllustration'
 import { toast } from 'react-toastify'
 import baseConst from '../../../src/data/const'
 import 'react-toastify/dist/ReactToastify.css'
+import { useCookies } from 'react-cookie'
 
 interface State {
   password: string
@@ -60,6 +61,7 @@ const RegisterPage = () => {
   const handleMouseDownPassword = (event: MouseEvent<HTMLButtonElement>) => {
     event.preventDefault()
   }
+  const [cookie, setCookie] = useCookies(['token'])
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const router = useRouter()
@@ -74,7 +76,7 @@ const RegisterPage = () => {
         position: toast.POSITION.TOP_RIGHT
       })
       const token = response.data.token
-      localStorage.setItem('token', token)
+      setCookie('token', token, { path: '/' })
       router.push('/')
     } catch (error: any) {
       if (error.response.data.email) {
@@ -91,11 +93,11 @@ const RegisterPage = () => {
   }
 
   useEffect(() => {
-    const trackToken = localStorage.getItem('token')
-    if (trackToken) {
+    const { token } = cookie
+    if (token) {
       router.push('/')
     }
-  })
+  }, [cookie])
 
   return (
     <Box className='content-center'>
