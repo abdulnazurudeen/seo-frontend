@@ -5,7 +5,6 @@ import type { NextRequest } from 'next/server'
 // then we'll rewrite the request to /beta
 export function middleware(request: NextRequest) {
   const { cookies } = <any>request
-  console.log('middlware', cookies?.get('token'), request.nextUrl.pathname)
   // Example function to validate auth
   if (cookies && cookies?.get('token')) {
     return NextResponse.next()

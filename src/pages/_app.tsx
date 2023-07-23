@@ -41,9 +41,7 @@ const App = (props: ExtendedAppProps) => {
   const [cookie] = useCookies(['token'])
   useEffect(() => {
     const { token } = cookie
-    console.log('APP inside ', token)
     const checkToken = async () => {
-      console.log('Im checking', router.pathname)
       const user = await getCurrentUser(token)
       const isAuthenticated = token !== null && token !== undefined && user
       if (!isAuthenticated && !router.pathname.includes('/login') && !router.pathname.includes('/register')) {

@@ -100,7 +100,6 @@ const LoginPage = () => {
       router.push('/forecast/list')
       Router.push('/forecast/list')
     } catch (err: any) {
-      console.error('error', typeof err)
       const {
         response: { data }
       } = err

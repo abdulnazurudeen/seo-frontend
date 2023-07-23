@@ -122,7 +122,6 @@ const ForeCastForm = () => {
       setPositions(adjustedPositions)
     }
     calculateTotalValue(updatedPositions)
-    console.log(positions)
   }
   const calculateTotalValue = (updatedPositions: Position[]) => {
     const sum = updatedPositions.reduce((acc, position) => acc + position.value, 0)
@@ -181,7 +180,7 @@ const ForeCastForm = () => {
           name,
           value: Number(value) // Explicitly cast value to number
         }))
-        console.log(positionsData, 'positionsData')
+
         setPositions(positionsData)
         calculateTotalValue(positionsData)
       } catch (error) {
@@ -261,7 +260,7 @@ const ForeCastForm = () => {
       created_on: currentDate,
       requested_by: userId
     }
-    console.log(postData)
+
     try {
       axios
         .post(baseConst.apiUrl + 'v1/forecast/create/', postData, {
