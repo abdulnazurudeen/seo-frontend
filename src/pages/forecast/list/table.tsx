@@ -17,6 +17,7 @@ interface Column {
   id: string
   label: string
   minWidth?: number
+  child?: string
   align?: 'left'
   format?: (value: number) => string
 }
@@ -27,8 +28,8 @@ const columns: readonly Column[] = [
   { id: 'lead_to_sale', label: 'Lead to Sale', minWidth: 100 },
   { id: 'enter_average_order_value', label: 'Enter Average Order Value', minWidth: 100 },
   { id: 'device', label: 'Device', minWidth: 100 },
-  { id: 'location', label: 'Location', minWidth: 100 },
-  { id: 'language', label: 'Language', minWidth: 100 },
+  { id: 'location_object', child: 'location_name', label: 'Location', minWidth: 100 },
+  { id: 'language_object', child: 'language_name', label: 'Language', minWidth: 100 },
   { id: 'os', label: 'OS', minWidth: 100 },
   { id: 'no_of_related_keyword', label: 'No. of Related Keyword', minWidth: 100 }
 ]
@@ -89,7 +90,14 @@ const ForeCastListTable = () => {
                 <TableRow hover role='checkbox' tabIndex={-1} key={row.id}>
                   {columns.map(column => {
                     const value = row[column.id]
-
+                    if (column?.child) {
+                      const child_value = value[column?.child]
+                      return (
+                        <TableCell key={column.id} align={column.align}>
+                          {column.format && typeof child_value === 'number' ? column.format(child_value) : child_value}
+                        </TableCell>
+                      )
+                    }
                     return (
                       <TableCell key={column.id} align={column.align}>
                         {column.format && typeof value === 'number' ? column.format(value) : value}
