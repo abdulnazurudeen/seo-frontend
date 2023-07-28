@@ -1,4 +1,4 @@
 const baseConst = {
-  apiUrl: process.env.APIURL
+  apiUrl: process.env.APIURL,
 }
 export default baseConst
