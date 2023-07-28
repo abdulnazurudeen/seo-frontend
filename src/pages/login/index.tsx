@@ -1,7 +1,7 @@
 // ** React Imports
 import { MouseEvent, ReactNode, useEffect, useState } from 'react'
 import Link from 'next/link'
-import Router, { useRouter } from 'next/router'
+import { useRouter } from 'next/router'
 
 import axios from 'axios'
 import Box from '@mui/material/Box'
@@ -99,8 +99,7 @@ const LoginPage = () => {
 
       setCookie('token', token, { path: '/' })
 
-      // router.push('/forecast/list')
-      Router.push('/forecast/list')
+      router.push('/forecast/list')
     } catch (err: any) {
       const {
         response: { data }
