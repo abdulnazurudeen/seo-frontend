@@ -1,5 +1,5 @@
 // ** React Imports
-import { MouseEvent, ReactNode, useEffect, useState } from 'react'
+import { MouseEvent, ReactNode, useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 
@@ -65,7 +65,7 @@ const FormControlLabel = styled(MuiFormControlLabel)<FormControlLabelProps>(({ t
 }))
 
 const LoginPage = () => {
-  const [cookie, setCookie] = useCookies(['token'])
+  const [_, setCookie] = useCookies(['token']) // eslint-disable-line
   const router = useRouter()
   const [values, setValues] = useState<State>({
     password: '',
@@ -108,9 +108,9 @@ const LoginPage = () => {
     }
   }
 
-  useEffect(() => {
-    if (cookie) setCookie('token', '')
-  }, [cookie])
+  // useEffect(() => {
+  //   if (cookie) setCookie('token', '')
+  // }, [cookie])
 
   return (
     <Box className='content-center'>
