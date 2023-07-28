@@ -35,7 +35,7 @@ const BadgeContentSpan = styled('span')(({ theme }) => ({
 const UserDropdown = () => {
   // ** States
   const [anchorEl, setAnchorEl] = useState<Element | null>(null)
-  const [cookies, setCookie, removeCookie] = useCookies(['token'])
+  const [_, __, removeCookie] = useCookies(['token']) // eslint-disable-line
 
   // ** Hooks
   const router = useRouter()

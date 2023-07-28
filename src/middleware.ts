@@ -5,12 +5,14 @@ import type { NextRequest } from 'next/server'
 // then we'll rewrite the request to /beta
 export function middleware(request: NextRequest) {
   const { cookies } = <any>request
+
   // Example function to validate auth
   if (cookies && cookies?.get('token')) {
     return NextResponse.next()
   }
 
   const loginUrl = new URL('/login', request.url)
+
   // loginUrl.searchParams.set('from', request.nextUrl.pathname)
 
   return NextResponse.redirect(loginUrl)

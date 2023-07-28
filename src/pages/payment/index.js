@@ -25,6 +25,7 @@ const PaymentPage = () => {
       })
     })
     const session = await response.json()
+
     // sessionId: session.id
     // Redirect the user to the Stripe payment page
     const result = await stripe.redirectToCheckout({

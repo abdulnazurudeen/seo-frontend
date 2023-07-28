@@ -37,11 +37,12 @@ const columns: readonly Column[] = [
 const statusFormat = (state: String) => {
   const str = state.replace('_', ' ')
   const arr = str.split(' ')
-  for (var i = 0; i < arr.length; i++) {
+  for (let i = 0; i < arr.length; i++) {
     arr[i] = arr[i].charAt(0).toUpperCase() + arr[i].slice(1)
   }
   const str2 = arr.join(' ')
-  return str2
+  
+return str2
 }
 const ForeCastListTable = () => {
   const [responseData, setResponseData] = useState([])
@@ -102,13 +103,15 @@ const ForeCastListTable = () => {
                     const value = row[column.id]
                     if (column?.child) {
                       const child_value = value[column?.child]
-                      return (
+                      
+return (
                         <TableCell key={column.id} align={column.align}>
                           {column.format && typeof child_value === 'number' ? column.format(child_value) : child_value}
                         </TableCell>
                       )
                     }
-                    return (
+                    
+return (
                       <TableCell key={column.id} align={column.align}>
                         {column.format && typeof value === 'number' ? column.format(value) : value}
                       </TableCell>

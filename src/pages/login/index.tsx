@@ -45,6 +45,7 @@ interface ErrorState {
   password: string
   [key: string]: string
 }
+
 // ** Styled Components
 const Card = styled(MuiCard)<CardProps>(({ theme }) => ({
   [theme.breakpoints.up('sm')]: { width: '28rem' }
@@ -97,7 +98,8 @@ const LoginPage = () => {
       const token = response.data.token
 
       setCookie('token', token, { path: '/' })
-      router.push('/forecast/list')
+
+      // router.push('/forecast/list')
       Router.push('/forecast/list')
     } catch (err: any) {
       const {
@@ -107,7 +109,9 @@ const LoginPage = () => {
     }
   }
 
-  useEffect(() => {}, [cookie])
+  useEffect(() => {
+    if (cookie) setCookie('token', '')
+  }, [cookie])
 
   return (
     <Box className='content-center'>

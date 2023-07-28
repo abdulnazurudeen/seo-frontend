@@ -10,11 +10,13 @@ const getCurrentUser = async (token: any) => {
         'Content-Type': 'application/json'
       }
     })
-    return response.data
+    
+return response.data
   } catch (error) {
     console.error(error)
   }
-  return false
+  
+return false
 }
 
 export { getCurrentUser }
