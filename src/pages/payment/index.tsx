@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { Button } from '@mui/material'
 import Grid from '@mui/material/Grid'
 import Card from '@mui/material/Card'
@@ -9,6 +9,7 @@ import { stripKey } from 'src/data/secret'
 import { useCookies } from 'react-cookie'
 
 const stripePromise = loadStripe(stripKey)
+
 // const result: {
 //   error: StripeError
 // }

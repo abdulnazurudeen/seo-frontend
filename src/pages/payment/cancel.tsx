@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Alert, Button, CardContent } from '@mui/material'
+import { Alert, CardContent } from '@mui/material'
 import Grid from '@mui/material/Grid'
 import Card from '@mui/material/Card'
 import CardHeader from '@mui/material/CardHeader'
@@ -53,6 +53,7 @@ const PaymentCancelPage = () => {
     sendUpdate()
   }, [router])
   const err_msg = error ? <div>Error: {error}</div> : 'Something went wrong'
+
   return (
     <Grid container spacing={6}>
       <Grid item xs={12}>

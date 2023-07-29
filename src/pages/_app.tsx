@@ -47,13 +47,14 @@ const App = (props: ExtendedAppProps) => {
       if (!isAuthenticated && !router.pathname.includes('/login') && !router.pathname.includes('/register')) {
         router.push('/login')
       }
+
       // else {
       //   console.log(isAuthenticated, 'isAuthenticated succcess so i redirect to home')
       //   router.push('/')
       // }
     }
     checkToken()
-  }, [cookie])
+  }, [cookie, router])
   const { Component, emotionCache = clientSideEmotionCache, pageProps } = props
   const getLayout = Component.getLayout ?? (page => <UserLayout>{page}</UserLayout>)
 
