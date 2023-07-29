@@ -25,6 +25,7 @@ const PlanList = () => {
   const [planList, setPlanList] = useState([])
   const [cookie] = useCookies(['token'])
   const router = useRouter()
+
   //   const planList = [
   //     {
   //       active: true,
@@ -84,44 +85,45 @@ const PlanList = () => {
     }
     loadData()
   }, [])
-  const PlanListTwo = [
-    {
-      active: false,
-      f1: '1',
-      f2: '20',
-      f3: '20',
-      f4: '0.15',
-      f5: '3',
-      f6: '500%',
-      f7: '15',
-      f8: '100',
-      f9: '2000'
-    },
-    {
-      active: false,
-      f1: '2',
-      f2: '40',
-      f3: '40',
-      f4: '0.15',
-      f5: '6',
-      f6: '400%',
-      f7: '24',
-      f8: '100',
-      f9: '4000'
-    },
-    {
-      active: false,
-      f1: '3',
-      f2: '60',
-      f3: '60',
-      f4: '0.15',
-      f5: '9',
-      f6: '300%',
-      f7: '27',
-      f8: '100',
-      f9: '6000'
-    }
-  ]
+
+  // const PlanListTwo = [
+  //   {
+  //     active: false,
+  //     f1: '1',
+  //     f2: '20',
+  //     f3: '20',
+  //     f4: '0.15',
+  //     f5: '3',
+  //     f6: '500%',
+  //     f7: '15',
+  //     f8: '100',
+  //     f9: '2000'
+  //   },
+  //   {
+  //     active: false,
+  //     f1: '2',
+  //     f2: '40',
+  //     f3: '40',
+  //     f4: '0.15',
+  //     f5: '6',
+  //     f6: '400%',
+  //     f7: '24',
+  //     f8: '100',
+  //     f9: '4000'
+  //   },
+  //   {
+  //     active: false,
+  //     f1: '3',
+  //     f2: '60',
+  //     f3: '60',
+  //     f4: '0.15',
+  //     f5: '9',
+  //     f6: '300%',
+  //     f7: '27',
+  //     f8: '100',
+  //     f9: '6000'
+  //   }
+  // ]
 
   const paymentRedirect = (id: number) => {
     router.push(`/payment?plan=${id}`)

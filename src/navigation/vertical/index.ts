@@ -39,6 +39,7 @@ const navigation = (): VerticalNavItemsType => {
       icon: Table,
       path: '/plan/list'
     },
+
     // {
     //   title: 'My Plans',
     //   icon: CubeOutline,

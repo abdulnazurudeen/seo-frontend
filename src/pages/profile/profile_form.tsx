@@ -5,7 +5,6 @@ import TextField from '@mui/material/TextField'
 import CardHeader from '@mui/material/CardHeader'
 import CardContent from '@mui/material/CardContent'
 import Button from '@mui/material/Button'
-import Paper from '@mui/material/Paper'
 import baseConst from 'src/data/const'
 import { useCookies } from 'react-cookie'
 import { Typography } from '@mui/material'
@@ -55,7 +54,7 @@ const ProfileeForm = () => {
   const save = async () => {
     const { token } = cookie
     const { id } = state
-    const response = await fetch(`${baseConst.apiUrl}user/${id}/`, {
+    await fetch(`${baseConst.apiUrl}user/${id}/`, {
       method: 'PATCH',
       headers: {
         Accept: 'application/json',
