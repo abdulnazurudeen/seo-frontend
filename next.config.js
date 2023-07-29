@@ -2,7 +2,8 @@ const path = require('path')
 
 module.exports = {
   env: {
-    APIURL: process.env.NEXT_PUBLIC_APIURL
+    APIURL: process.env.NEXT_PUBLIC_APIURL,
+    STRIP_PUBKEY: process.env.NEXT_PUBLIC_STRIP_PUBKEY
   },
   trailingSlash: true,
   reactStrictMode: false,

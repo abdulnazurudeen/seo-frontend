@@ -19,20 +19,20 @@ const TrophyImg = styled('img')({
 })
 
 interface HighLightProps {
-  isLoading: boolean;
-  orderVal: number;
+  isLoading: boolean
+  orderVal: number
 }
 
 const HighLight = ({ isLoading, orderVal }: HighLightProps) => {
   const theme = useTheme()
   const imageSrc = theme.palette.mode === 'light' ? 'triangle-light.png' : 'triangle-dark.png'
-  setTimeout(()=>{
+  setTimeout(() => {
     console.log(orderVal)
   }, 1000)
-  if(isLoading){
-    return null;
+  if (isLoading) {
+    return null
   }
-  
+
   return (
     <Card sx={{ position: 'relative' }}>
       <CardContent>
@@ -41,11 +41,11 @@ const HighLight = ({ isLoading, orderVal }: HighLightProps) => {
           Based on the customer data
         </Typography>
         <Typography variant='h5' sx={{ my: 4, color: 'primary.main' }}>
-        ${orderVal}
+          ${orderVal}
         </Typography>
-        <Button size='small' variant='contained'>
+        {/* <Button size='small' variant='contained'>
           View More
-        </Button>
+        </Button> */}
         <TriangleImg alt='triangle background' src={`/images/misc/${imageSrc}`} />
         <TrophyImg alt='trophy' src='/images/misc/trophy.png' />
       </CardContent>

@@ -7,11 +7,12 @@ const Dashboard = () => {
   const [cookie] = useCookies(['token'])
   useEffect(() => {
     const { token } = cookie
-
     // const { pathname } = Router
     if (token) {
+      console.log('Dashboard only redirecting forecast list')
       Router.push('/forecast/list')
     } else {
+      console.log('Dashboard only redirecting login')
       Router.push('/login')
     }
   }, [cookie])

@@ -41,8 +41,8 @@ const statusFormat = (state: String) => {
     arr[i] = arr[i].charAt(0).toUpperCase() + arr[i].slice(1)
   }
   const str2 = arr.join(' ')
-  
-return str2
+
+  return str2
 }
 const ForeCastListTable = () => {
   const [responseData, setResponseData] = useState([])
@@ -63,7 +63,7 @@ const ForeCastListTable = () => {
   const [cookie] = useCookies(['token'])
   useEffect(() => {
     const { token } = cookie
-
+    console.log(token, 'list token')
     const getForecastList = async () => {
       try {
         const response = await axios.get(baseConst.apiUrl + 'v1/forecast/', {
@@ -103,15 +103,15 @@ const ForeCastListTable = () => {
                     const value = row[column.id]
                     if (column?.child) {
                       const child_value = value[column?.child]
-                      
-return (
+
+                      return (
                         <TableCell key={column.id} align={column.align}>
                           {column.format && typeof child_value === 'number' ? column.format(child_value) : child_value}
                         </TableCell>
                       )
                     }
-                    
-return (
+
+                    return (
                       <TableCell key={column.id} align={column.align}>
                         {column.format && typeof value === 'number' ? column.format(value) : value}
                       </TableCell>

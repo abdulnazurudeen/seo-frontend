@@ -46,9 +46,11 @@ const App = (props: ExtendedAppProps) => {
       const isAuthenticated = token !== null && token !== undefined && user
       if (!isAuthenticated && !router.pathname.includes('/login') && !router.pathname.includes('/register')) {
         router.push('/login')
-      } else {
-        router.push('/')
       }
+      // else {
+      //   console.log(isAuthenticated, 'isAuthenticated succcess so i redirect to home')
+      //   router.push('/')
+      // }
     }
     checkToken()
   }, [cookie])
