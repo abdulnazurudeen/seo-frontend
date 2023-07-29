@@ -7,6 +7,7 @@ import { loadStripe } from '@stripe/stripe-js'
 import baseConst from 'src/data/const'
 import { stripKey } from 'src/data/secret'
 import { useCookies } from 'react-cookie'
+import { useRouter } from 'next/router'
 
 const stripePromise = loadStripe(stripKey)
 
@@ -18,6 +19,7 @@ const PaymentPage = () => {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
   const [cookie] = useCookies(['token'])
+  const router = useRouter()
 
   const handlePaymentClick = async () => {
     setLoading(true)
@@ -26,6 +28,7 @@ const PaymentPage = () => {
       const stripe = await stripePromise
 
       const { token } = cookie
+      const { plan } = router.query
 
       const response = await fetch(`${baseConst.apiUrl}v1/create-checkout-session/`, {
         method: 'POST',
@@ -35,7 +38,7 @@ const PaymentPage = () => {
           Authorization: `Token ${token}`
         },
         body: JSON.stringify({
-          plan_id: 1
+          plan_id: plan
         })
       })
 

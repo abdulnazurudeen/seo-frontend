@@ -31,14 +31,14 @@ const navigation = (): VerticalNavItemsType => {
       path: '/forecast/new'
     },
 
-    // {
-    //   sectionTitle: 'Plans'
-    // },
-    // {
-    //   title: 'Plans List',
-    //   icon: Table,
-    //   path: '/plan/list'
-    // },
+    {
+      sectionTitle: 'Plans'
+    },
+    {
+      title: 'Plans List',
+      icon: Table,
+      path: '/plan/list'
+    },
     // {
     //   title: 'My Plans',
     //   icon: CubeOutline,

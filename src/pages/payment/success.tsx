@@ -17,13 +17,13 @@ const PaymentSuccessPage = () => {
   const [iserror, setIsError] = useState(false)
   const [cookie] = useCookies(['token'])
   const router = useRouter()
-
+  const { txid } = router.query
   useEffect(() => {
     const sendUpdate = async () => {
-      const { txid } = router.query
       setLoading(true)
       setIsError(false)
       setError('')
+      if (!txid) return
       try {
         const { token } = cookie
         const response = await fetch(`${baseConst.apiUrl}v1/update-transaction-status/${txid}/`, {
@@ -34,7 +34,7 @@ const PaymentSuccessPage = () => {
             Authorization: `Token ${token}`
           },
           body: JSON.stringify({
-            status: 'failed'
+            status: 'completed'
           })
         })
         const { status } = response
@@ -51,7 +51,7 @@ const PaymentSuccessPage = () => {
       }
     }
     sendUpdate()
-  }, [router])
+  }, [router, txid])
   const err_msg = error ? <div>Error: {error}</div> : 'Something went wrong'
 
   return (

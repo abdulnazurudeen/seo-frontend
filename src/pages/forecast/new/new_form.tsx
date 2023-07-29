@@ -256,7 +256,7 @@ const ForeCastForm = () => {
       position_values: getPosVal,
       top_three_average: state.one_three_average,
       four_ten_average: state.four_ten_average,
-      report_status: 'completed',
+      report_status: 'requested',
       created_on: currentDate,
       requested_by: userId
     }
