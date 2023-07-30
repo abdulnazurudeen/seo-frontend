@@ -38,7 +38,7 @@ if (themeConfig.routingLoader) {
 }
 const App = (props: ExtendedAppProps) => {
   const router = useRouter()
-  const [cookie, _, removeCookie] = useCookies(['token'])
+  const [cookie, _, removeCookie] = useCookies(['token']) // eslint-disable-line
   useEffect(() => {
     const { token } = cookie
     const checkToken = async () => {
