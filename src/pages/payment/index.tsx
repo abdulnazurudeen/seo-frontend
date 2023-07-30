@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Button } from '@mui/material'
+import { Button, CardContent } from '@mui/material'
 import Grid from '@mui/material/Grid'
 import Card from '@mui/material/Card'
 import CardHeader from '@mui/material/CardHeader'
@@ -61,14 +61,16 @@ const PaymentPage = () => {
   }
 
   return (
-    <Grid container spacing={6}>
+    <Grid container spacing={6} alignItems='center'>
       <Grid item xs={12}>
         <Card>
           <CardHeader title='Proceed to payment' titleTypographyProps={{ variant: 'h6' }} />
-          <Button variant='contained' color='primary' onClick={handlePaymentClick} disabled={loading}>
-            {loading ? 'Loading...' : 'Proceed to Payment'}
-          </Button>
-          {error && <div>Error: {error}</div>}
+          <CardContent>
+            <Button variant='contained' color='primary' onClick={handlePaymentClick} disabled={loading}>
+              {loading ? 'Loading...' : 'Proceed to Payment'}
+            </Button>
+            {error && <div>Error: {error}</div>}
+          </CardContent>
         </Card>
       </Grid>
     </Grid>

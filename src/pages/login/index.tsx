@@ -95,10 +95,8 @@ const LoginPage = () => {
         password: password
       }
       const response = await axios.post(baseConst.apiUrl + 'login/', param)
-      const token = response.data.token
-
+      const { token } = response.data
       setCookie('token', token, { path: '/' })
-
       router.push('/forecast/list')
     } catch (err: any) {
       const {

@@ -38,16 +38,18 @@ if (themeConfig.routingLoader) {
 }
 const App = (props: ExtendedAppProps) => {
   const router = useRouter()
-  const [cookie] = useCookies(['token'])
+  const [cookie, _, removeCookie] = useCookies(['token'])
   useEffect(() => {
     const { token } = cookie
     const checkToken = async () => {
       const user = await getCurrentUser(token)
       const isAuthenticated = token !== null && token !== undefined && user
       if (!isAuthenticated && !router.pathname.includes('/login') && !router.pathname.includes('/register')) {
+        removeCookie('token')
         router.push('/login')
+      } else if ((isAuthenticated && router.pathname.includes('/login')) || router.pathname.includes('/register')) {
+        router.push('/')
       }
-
       // else {
       //   console.log(isAuthenticated, 'isAuthenticated succcess so i redirect to home')
       //   router.push('/')
