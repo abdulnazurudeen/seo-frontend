@@ -40,7 +40,7 @@ const App = (props: ExtendedAppProps) => {
   const router = useRouter()
   const [cookie, _, removeCookie] = useCookies(['token']) // eslint-disable-line
   useEffect(() => {
-    const { token } = cookie
+    const token = cookie.token
     const checkToken = async () => {
       if (token) {
         const user = await getCurrentUser(token)
