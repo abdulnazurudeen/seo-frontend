@@ -52,7 +52,7 @@ const UserDropdown = () => {
   }
 
   const handleLogout = () => {
-    removeCookie('token')
+    removeCookie('token', { path: '/' })
     router.push('/login')
   }
 

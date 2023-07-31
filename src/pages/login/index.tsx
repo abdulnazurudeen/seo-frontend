@@ -84,7 +84,8 @@ const LoginPage = () => {
     password: ''
   })
 
-  const handleLoginProcess = async () => {
+  const handleLoginProcess = async (event: React.FormEvent) => {
+    event.preventDefault()
     setErrors({
       email: '',
       password: ''
@@ -95,14 +96,22 @@ const LoginPage = () => {
         password: password
       }
       const response = await axios.post(baseConst.apiUrl + 'login/', param)
-      const { token } = response.data
-      setCookie('token', token, { path: '/' })
-      router.push('/forecast/list')
+      const { status } = response
+      if (status == 400) {
+        const { data } = response
+        setErrors(data)
+      }
+      if (status == 200) {
+        const { token } = response.data
+        console.log('Logged in success', token)
+        setCookie('token', token, { path: '/' })
+        router.push('/forecast/list')
+      }
     } catch (err: any) {
       const { response } = err
       console.log('error login', err, response)
-
-      // setErrors(data)
+      const { data } = response
+      if (data) setErrors(data)
     }
   }
 
@@ -138,16 +147,14 @@ const LoginPage = () => {
                 // Check if the key exists in the ErrorState interface or if it is an additional error
                 return (
                   ['email', 'password'].indexOf(err) < 0 && (
-                    <>
-                      <Alert severity='error' className='error alert'>
-                        {errors[err]}
-                      </Alert>
-                    </>
+                    <Alert key={err} severity='error' className='error alert'>
+                      {errors[err]}
+                    </Alert>
                   )
                 )
               })}
           </Box>
-          <form noValidate autoComplete='off' onSubmit={e => e.preventDefault()}>
+          <Box component='form' noValidate autoComplete='off' onSubmit={handleLoginProcess}>
             <TextField
               autoFocus
               fullWidth
@@ -198,7 +205,14 @@ const LoginPage = () => {
                 <LinkStyled onClick={e => e.preventDefault()}>Forgot Password?</LinkStyled>
               </Link>
             </Box>
-            <Button fullWidth size='large' variant='contained' sx={{ marginBottom: 7 }} onClick={handleLoginProcess}>
+            <Button
+              type='submit'
+              fullWidth
+              size='large'
+              variant='contained'
+              sx={{ marginBottom: 7 }}
+              onClick={handleLoginProcess}
+            >
               Login
             </Button>
             <Box sx={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', justifyContent: 'center' }}>
@@ -211,7 +225,7 @@ const LoginPage = () => {
                 </Link>
               </Typography>
             </Box>
-          </form>
+          </Box>
         </CardContent>
       </Card>
       <FooterIllustrationsV1 />
