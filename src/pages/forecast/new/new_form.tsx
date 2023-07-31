@@ -36,6 +36,7 @@ interface Position {
   name: string
   value: number
 }
+
 // let userId = 4
 const ForeCastForm = () => {
   const [cookie] = useCookies(['token'])
@@ -133,6 +134,7 @@ const ForeCastForm = () => {
 
   useEffect(() => {
     const { token } = cookie
+
     // const getCurrentUser = async () => {
     //   try {
     //     const response = await axios.get(baseConst.apiUrl + 'user/', {
@@ -189,6 +191,7 @@ const ForeCastForm = () => {
     }
     postRegister()
     fetchData()
+
     // getCurrentUser()
   }, [cookie, state])
 
@@ -238,6 +241,7 @@ const ForeCastForm = () => {
     positions.map(item => {
       getPosVal[item.name] = item.value
     })
+
     // const currentDate = new Date().toLocaleDateString('en-US', {
     //   year: 'numeric',
     //   month: '2-digit',
@@ -255,8 +259,9 @@ const ForeCastForm = () => {
       no_of_related_keyword: state.count,
       position_values: getPosVal,
       top_three_average: state.one_three_average,
-      four_ten_average: state.four_ten_average
-      // report_status: 'requested'
+      four_ten_average: state.four_ten_average,
+      report_status: 'requested'
+
       // created_on: currentDate,
       // requested_by: userId
     }
@@ -276,7 +281,7 @@ const ForeCastForm = () => {
             position: toast.POSITION.TOP_RIGHT
           })
           console.log('blocek redirect')
-          // router.push('/forecast/list')
+          router.push('/forecast/list')
         })
     } catch (error) {
       toast.error('Forcast Not Created!. An error occurred!', {

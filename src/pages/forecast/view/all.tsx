@@ -5,6 +5,7 @@ import TableHead from '@mui/material/TableHead'
 import TableBody from '@mui/material/TableBody'
 import TableCell from '@mui/material/TableCell'
 import TableContainer from '@mui/material/TableContainer'
+
 // import TablePagination from '@mui/material/TablePagination'
 // import { useState, ChangeEvent } from 'react'
 // import AllData from '../../../data/all_data'
@@ -22,7 +23,8 @@ const All = ({ report = [] }) => {
   //     setPage(0)
   //   }
   console.log(report, 'report?')
-  return (
+  
+return (
     <Paper sx={{ width: '100%', overflow: 'hidden' }}>
       <TableContainer component={Paper}>
         <Table>

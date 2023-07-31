@@ -101,6 +101,7 @@ const LoginPage = () => {
     } catch (err: any) {
       const { response } = err
       console.log('error login', err, response)
+
       // setErrors(data)
     }
   }

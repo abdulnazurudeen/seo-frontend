@@ -13,6 +13,7 @@ import ApexChartWrapper from 'src/@core/styles/libs/react-apexcharts'
 import Positions from './positions'
 import HighLight from './highlighted'
 import HighLight2 from './highlighted2'
+
 // import Potentials from './potentials'
 // import ViewChartOne from './chart1'
 // import ViewChartTwo from './chart2'

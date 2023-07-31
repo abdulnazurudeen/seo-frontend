@@ -5,6 +5,7 @@ import TableHead from '@mui/material/TableHead'
 import TableBody from '@mui/material/TableBody'
 import TableCell from '@mui/material/TableCell'
 import TableContainer from '@mui/material/TableContainer'
+
 // import TablePagination from '@mui/material/TablePagination'
 // import { useState, ChangeEvent } from 'react'
 // import TopTenData from '../../../data/top_ten_data'
@@ -39,10 +40,12 @@ function TopTen({ report = [] }) {
           </TableHead>
           <TableBody>
             {
+
               // TopThreeData.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
               report.map((row: any) => {
                 console.log(row, 'row')
-                return (
+                
+return (
                   <TableRow hover key={row.Keyword}>
                     <TableCell>{row.relevance_score_overlap}</TableCell>
                     <TableCell sx={{ minWidth: 300 }}>{row.keyword}</TableCell>
