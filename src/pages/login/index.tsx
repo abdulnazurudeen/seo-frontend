@@ -99,10 +99,9 @@ const LoginPage = () => {
       setCookie('token', token, { path: '/' })
       router.push('/forecast/list')
     } catch (err: any) {
-      const {
-        response: { data }
-      } = err
-      setErrors(data)
+      const { response } = err
+      console.log('error login', err, response)
+      // setErrors(data)
     }
   }
 

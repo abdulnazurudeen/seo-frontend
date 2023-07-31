@@ -57,7 +57,7 @@ const App = (props: ExtendedAppProps) => {
       // }
     }
     checkToken()
-  }, [cookie, router])
+  }, [cookie, router, removeCookie])
   const { Component, emotionCache = clientSideEmotionCache, pageProps } = props
   const getLayout = Component.getLayout ?? (page => <UserLayout>{page}</UserLayout>)
 

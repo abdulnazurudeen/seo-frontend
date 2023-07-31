@@ -13,9 +13,9 @@ import ApexChartWrapper from 'src/@core/styles/libs/react-apexcharts'
 import Positions from './positions'
 import HighLight from './highlighted'
 import HighLight2 from './highlighted2'
-import Potentials from './potentials'
-import ViewChartOne from './chart1'
-import ViewChartTwo from './chart2'
+// import Potentials from './potentials'
+// import ViewChartOne from './chart1'
+// import ViewChartTwo from './chart2'
 import TopThree from './top_three'
 import TopTen from './top_ten'
 import All from './all'
@@ -59,6 +59,7 @@ function a11yProps(index) {
 const ForcastList = () => {
   const [isLoading, setIsLoading] = useState(true)
   const [dashboardData, setDashboardData] = useState([])
+  const [reportData, setReportData] = useState([])
   const [getSalesData, setSalesData] = useState([])
   const [posistionList, setPositionData] = useState([])
 
@@ -89,6 +90,18 @@ const ForcastList = () => {
             }
           })
           setDashboardData(response.data)
+          const report_response = await axios.get(`${baseConst.apiUrl}v1/forecast/${id}/report/`, {
+            headers: {
+              Authorization: `Token ${token}`,
+              Accept: 'application/json',
+              'Content-Type': 'application/json'
+            }
+          })
+          const {
+            data: { results }
+          } = report_response
+          console.log(results, 'result')
+          setReportData(results)
           const salesData = [
             {
               stats: response.data.conversion_rate,
@@ -212,7 +225,7 @@ const ForcastList = () => {
               <ApexChartWrapper>
                 <Grid container spacing={6}>
                   <Grid item xs={12} md={4}>
-                    <HighLight isLoading={isLoading} orderVal={dashboardData.lead_to_sale} />
+                    <HighLight isLoading={isLoading} orderVal={dashboardData.enter_average_order_value} />
                   </Grid>
                   <Grid item xs={12} md={8}>
                     <HighLight2 salesData={getSalesData} />
@@ -221,25 +234,25 @@ const ForcastList = () => {
                     <Positions posistionList={posistionList} />
                   </Grid>
                   <Grid item xs={12} md={12}>
-                    <Potentials />
+                    {/* <Potentials /> NEED TO FIX */}
                   </Grid>
                   <Grid item xs={12} md={6}>
-                    <ViewChartOne />
+                    {/* <ViewChartOne />  NEED TO FIX */}
                   </Grid>
                   <Grid item xs={12} md={6}>
-                    <ViewChartTwo />
+                    {/* <ViewChartTwo />  NEED TO FIX */}
                   </Grid>
                 </Grid>
               </ApexChartWrapper>
             </TabPanel>
             <TabPanel value={value} index={1}>
-              <TopThree />
+              {reportData.length > 0 && <TopThree report={reportData} />}
             </TabPanel>
             <TabPanel value={value} index={2}>
-              <TopTen />
+              {reportData.length > 0 && <TopTen report={reportData} />}
             </TabPanel>
             <TabPanel value={value} index={3}>
-              <All />
+              {reportData.length > 0 && <All report={reportData} />}
             </TabPanel>
           </Box>
         </Card>

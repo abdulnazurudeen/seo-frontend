@@ -97,7 +97,7 @@ const RegisterPage = () => {
     if (token) {
       router.push('/')
     }
-  }, [cookie])
+  }, [cookie, router])
 
   return (
     <Box className='content-center'>

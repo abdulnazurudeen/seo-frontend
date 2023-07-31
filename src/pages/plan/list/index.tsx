@@ -84,7 +84,7 @@ const PlanList = () => {
       }
     }
     loadData()
-  }, [])
+  }, [cookie])
 
   // const PlanListTwo = [
   //   {

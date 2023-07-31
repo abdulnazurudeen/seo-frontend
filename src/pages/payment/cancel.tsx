@@ -51,7 +51,7 @@ const PaymentCancelPage = () => {
       }
     }
     sendUpdate()
-  }, [router])
+  }, [router, cookie])
   const err_msg = error ? <div>Error: {error}</div> : 'Something went wrong'
 
   return (

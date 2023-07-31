@@ -41,7 +41,7 @@ const ProfileeForm = () => {
       }
     }
     loadData()
-  }, [])
+  }, [cookie])
 
   const handleChange = (event: { target: { name: any; value: any } }) => {
     const { name, value } = event.target

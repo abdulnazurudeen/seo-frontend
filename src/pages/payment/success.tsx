@@ -51,7 +51,7 @@ const PaymentSuccessPage = () => {
       }
     }
     sendUpdate()
-  }, [router, txid])
+  }, [router, txid, cookie])
   const err_msg = error ? <div>Error: {error}</div> : 'Something went wrong'
 
   return (
