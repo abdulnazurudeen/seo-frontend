@@ -103,6 +103,7 @@ const LoginPage = () => {
       }
       if (status == 200) {
         const { token } = response.data
+
         // console.log('Logged in success', token)
         setCookie('token', token, { path: '/' })
         router.push('/forecast/list')

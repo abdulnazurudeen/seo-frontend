@@ -1,8 +1,9 @@
 import Head from 'next/head'
-import { Router, useRouter } from 'next/router'
+import { Router } from 'next/router'
 import type { NextPage } from 'next'
 import type { AppProps } from 'next/app'
-import { useEffect } from 'react'
+
+// import { useEffect } from 'react'
 import NProgress from 'nprogress'
 import { CacheProvider } from '@emotion/react'
 import type { EmotionCache } from '@emotion/cache'
@@ -16,6 +17,7 @@ import 'react-toastify/dist/ReactToastify.css'
 import '../../styles/globals.css'
 import { ToastContainer } from 'react-toastify'
 import { CookiesProvider } from 'react-cookie'
+
 // import { useCookies } from 'react-cookie'
 // import { getCurrentUser } from 'src/@core/utils/helper'
 
