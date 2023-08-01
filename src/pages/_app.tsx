@@ -16,8 +16,8 @@ import 'react-toastify/dist/ReactToastify.css'
 import '../../styles/globals.css'
 import { ToastContainer } from 'react-toastify'
 import { CookiesProvider } from 'react-cookie'
-import { useCookies } from 'react-cookie'
-import { getCurrentUser } from 'src/@core/utils/helper'
+// import { useCookies } from 'react-cookie'
+// import { getCurrentUser } from 'src/@core/utils/helper'
 
 type ExtendedAppProps = AppProps & {
   Component: NextPage
@@ -37,26 +37,26 @@ if (themeConfig.routingLoader) {
   })
 }
 const App = (props: ExtendedAppProps) => {
-  const router = useRouter()
-  const [cookie, _, removeCookie] = useCookies(['token']) // eslint-disable-line
-  useEffect(() => {
-    const token = cookie.token
-    const checkToken = async () => {
-      if (token) {
-        const user = await getCurrentUser(token)
-        const isAuthenticated = token !== null && token !== undefined && user
-        if (!isAuthenticated && !router.pathname.includes('/login') && !router.pathname.includes('/register')) {
-          removeCookie('token')
-          router.push('/login')
-        } else if ((isAuthenticated && router.pathname.includes('/login')) || router.pathname.includes('/register')) {
-          router.push('/')
-        }
-      } else {
-        if (!router.pathname.includes('/login') && !router.pathname.includes('/register')) router.push('/login')
-      }
-    }
-    checkToken()
-  }, [cookie.token, router, removeCookie])
+  // const router = useRouter()
+  // const [cookie, _, removeCookie] = useCookies(['token']) // eslint-disable-line
+  // useEffect(() => {
+  //   const token = cookie.token
+  //   const checkToken = async () => {
+  //     if (token) {
+  //       const user = await getCurrentUser(token)
+  //       const isAuthenticated = token !== null && token !== undefined && user
+  //       if (!isAuthenticated && !router.pathname.includes('/login') && !router.pathname.includes('/register')) {
+  //         removeCookie('token')
+  //         router.push('/login')
+  //       } else if ((isAuthenticated && router.pathname.includes('/login')) || router.pathname.includes('/register')) {
+  //         router.push('/')
+  //       }
+  //     } else {
+  //       if (!router.pathname.includes('/login') && !router.pathname.includes('/register')) router.push('/login')
+  //     }
+  //   }
+  //   checkToken()
+  // }, [cookie.token, router, removeCookie])
   const { Component, emotionCache = clientSideEmotionCache, pageProps } = props
   const getLayout = Component.getLayout ?? (page => <UserLayout>{page}</UserLayout>)
 
