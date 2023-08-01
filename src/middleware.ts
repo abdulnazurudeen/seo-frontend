@@ -25,11 +25,13 @@ export async function middleware(request: NextRequest) {
 
         return NextResponse.redirect(home)
       }
+
       return NextResponse.next()
     }
   }
   if (['/login/', '/register/'].includes(nextUrl.pathname) === false) {
     const loginUrl = new URL('/login', request.url)
+
     return NextResponse.redirect(loginUrl)
   }
 }
