@@ -26,7 +26,7 @@ const HighLight = ({ isLoading, orderVal }: HighLightProps) => {
   const theme = useTheme()
   const imageSrc = theme.palette.mode === 'light' ? 'triangle-light.png' : 'triangle-dark.png'
   setTimeout(() => {
-    console.log(orderVal)
+    // console.log(orderVal)
   }, 1000)
   if (isLoading) {
     return null

@@ -21,7 +21,7 @@ function TopThree({ report = [] }) {
   //   setPage(0)
   // }
   //, page, rowsPerPage
-  console.log('TopThreeData', report)
+  // console.log('TopThreeData', report)
 
   return (
     <Paper sx={{ width: '100%', overflow: 'hidden' }}>
@@ -48,9 +48,9 @@ function TopThree({ report = [] }) {
 
               // TopThreeData.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
               report.map((row: any) => {
-                console.log(row, 'row')
-                
-return (
+                // console.log(row, 'row')
+
+                return (
                   <TableRow hover key={row.Keyword}>
                     <TableCell>{row.relevance_score_overlap}</TableCell>
                     <TableCell sx={{ minWidth: 300 }}>{row.keyword}</TableCell>

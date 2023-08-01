@@ -101,7 +101,8 @@ const ForcastList = () => {
           const {
             data: { results }
           } = report_response
-          console.log(results, 'result')
+
+          // console.log(results, 'result')
           setReportData(results)
           const salesData = [
             {
@@ -221,7 +222,6 @@ const ForcastList = () => {
                 <Tab label='All Data' {...a11yProps(2)} />
               </Tabs>
             </Box>
-            <p>{dashboardData ? console.log(dashboardData) : ''}</p>
             <TabPanel value={value} index={0}>
               <ApexChartWrapper>
                 <Grid container spacing={6}>

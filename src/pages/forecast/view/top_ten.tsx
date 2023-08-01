@@ -43,9 +43,9 @@ function TopTen({ report = [] }) {
 
               // TopThreeData.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
               report.map((row: any) => {
-                console.log(row, 'row')
-                
-return (
+                // console.log(row, 'row')
+
+                return (
                   <TableRow hover key={row.Keyword}>
                     <TableCell>{row.relevance_score_overlap}</TableCell>
                     <TableCell sx={{ minWidth: 300 }}>{row.keyword}</TableCell>

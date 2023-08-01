@@ -36,7 +36,8 @@ const ProfileeForm = () => {
       const { status } = response
       if (status == 200) {
         const data = await response.json()
-        console.log(data, 'data')
+
+        // console.log(data, 'data')
         setState(data)
       }
     }

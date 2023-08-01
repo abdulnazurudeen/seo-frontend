@@ -22,9 +22,9 @@ const All = ({ report = [] }) => {
   //     setRowsPerPage(+event.target.value)
   //     setPage(0)
   //   }
-  console.log(report, 'report?')
-  
-return (
+  // console.log(report, 'report?')
+
+  return (
     <Paper sx={{ width: '100%', overflow: 'hidden' }}>
       <TableContainer component={Paper}>
         <Table>

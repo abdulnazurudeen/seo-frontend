@@ -79,7 +79,8 @@ const PlanList = () => {
       const { status } = response
       if (status == 200) {
         const data = await response.json()
-        console.log(data)
+
+        // console.log(data)
         setPlanList(data)
       }
     }
