@@ -24,6 +24,7 @@ import All from './all'
 import baseConst from '../../../data/const'
 import axios from 'axios'
 import { useCookies } from 'react-cookie'
+import { Chip } from '@mui/material'
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props
@@ -210,7 +211,8 @@ const ForcastList = () => {
           <CardHeader
             title={
               <>
-                <span>Forcasting Report</span> - <span style={{ color: '#f00' }}>{dashboardData?.keyword}</span>
+                <span>Forcasting Report</span> - <span style={{ color: '#f00' }}>{dashboardData?.keyword}</span> -
+                <Chip label={dashboardData.report_status} color='success' />
               </>
             }
             titleTypographyProps={{ variant: 'h6' }}
@@ -221,11 +223,7 @@ const ForcastList = () => {
                 </Button>
               </>
             }
-            subheader={
-              <Button variant='contained' color='warning' onClick={e => handleClick(e, '/forecast/list')}>
-                {dashboardData.report_status}
-              </Button>
-            }
+            // subheader={}
           />
           <Box sx={{ width: '100%' }}>
             <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>

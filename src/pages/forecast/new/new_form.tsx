@@ -280,7 +280,7 @@ const ForeCastForm = () => {
           toast.success('New Forcast Created!', {
             position: toast.POSITION.TOP_RIGHT
           })
-          console.log('blocek redirect')
+          // console.log('blocek redirect')
           router.push('/forecast/list')
         })
     } catch (error) {

@@ -26,7 +26,7 @@ const columns: readonly Column[] = [
   { id: 'keyword', label: 'Keyword', minWidth: 100 },
   { id: 'conversion_rate', label: 'Conversion Rate', minWidth: 100 },
   { id: 'lead_to_sale', label: 'Lead to Sale', minWidth: 100 },
-  { id: 'enter_average_order_value', label: 'Enter Average Order Value', minWidth: 100 },
+  { id: 'enter_average_order_value', label: 'Average Order Value', minWidth: 100 },
   { id: 'device', label: 'Device', minWidth: 100 },
   { id: 'location_object', child: 'location_name', label: 'Location', minWidth: 100 },
   { id: 'language_object', child: 'language_name', label: 'Language', minWidth: 100 },
