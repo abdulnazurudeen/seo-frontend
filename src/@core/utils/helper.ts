@@ -10,13 +10,17 @@ const getCurrentUser = async (token: any) => {
         'Content-Type': 'application/json'
       }
     })
-    
-return response.data
+
+    return response.data
   } catch (error) {
     console.error(error)
   }
-  
-return false
+
+  return false
 }
 
-export { getCurrentUser }
+const roundOff = (number: string, fraction = 2) => {
+  return parseFloat(number).toFixed(fraction)
+}
+
+export { getCurrentUser, roundOff }

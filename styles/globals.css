@@ -22,3 +22,12 @@ code:not([class*='language-']):after {
 code[class*='language-'] {
   padding: 0;
 }
+.potential-best {
+  background-color: #d9ead3;
+}
+.potential-better {
+  background-color: rgb(255, 242, 204);
+}
+.potential-good {
+  background-color: rgb(244, 204, 204);
+}

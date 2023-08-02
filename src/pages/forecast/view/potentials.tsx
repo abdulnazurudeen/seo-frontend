@@ -7,108 +7,66 @@ import TableCell from '@mui/material/TableCell'
 import TableContainer from '@mui/material/TableContainer'
 import Card from '@mui/material/Card'
 import CardHeader from '@mui/material/CardHeader'
+import { roundOff } from '../../../@core/utils/helper'
 
-const potentialsList = [
-    {
-      f1: "Best (1/2 these keywords in 1-3)",
-      f2: "351055",
-      f3: "$8.85",
-      f4: "57830",
-      f5: "172.63",
-      f6: "172.63",
-      f7: "8674569.05",
-      f8: "104094828.60"
-    },
-    {
-      f1: "Better (1/4 your keywords in 1-3)",
-      f2: "175528",
-      f3: "$4.43",
-      f4: "28915",
-      f5: "86.31",
-      f6: "86.31",
-      f7: "4337284.52",
-      f8: "52047414.30"
-    },
-    {
-      f1: "Good (1/8 your keywords in top 1-3)",
-      f2: "87764",
-      f3: "$2.21",
-      f4: "14457",
-      f5: "43.16",
-      f6: "43.16",
-      f7: "2168642.26",
-      f8: "26023707.15"
-    },
-    {
-      f1: "Best (1/2 these keywords in 4-10)",
-      f2: "351055",
-      f3: "$8.85",
-      f4: "15352",
-      f5: "45.27",
-      f6: "45.27",
-      f7: "2302920.80",
-      f8: "27635049.60"
-    },
-    {
-      f1: "Better (1/4 your keywords in 4-10)",
-      f2: "175528",
-      f3: "$4.43",
-      f4: "7676",
-      f5: "22.63",
-      f6: "22.63",
-      f7: "1151460.40",
-      f8: "13817524.80"
-    },
-    {
-      f1: "Good (1/8 your keywords in top 4-10)",
-      f2: "87764",
-      f3: "$2.21",
-      f4: "3838",
-      f5: "11.32",
-      f6: "11.32",
-      f7: "575730.20",
-      f8: "6908762.40"
-    }
-   ]
+const lables: any = {
+  average_1_3: {
+    best: 'Best (1/2 these keywords in 1-3)',
+    better: 'Better (1/4 your keywords in 1-3)',
+    good: 'Good (1/8 your keywords in top 1-3)'
+  },
+  average_4_10: {
+    best: 'Best (1/2 these keywords in 4-10)',
+    better: 'Better (1/4 your keywords in 4-10)',
+    good: 'Good (1/8 your keywords in top 4-10)'
+  }
+}
 
-   const Potentials = () => {
-    return (
-        <Card>
-        <CardHeader 
-            title='Weighted Keyword Potential Forecast' 
-            titleTypographyProps={{ variant: 'h6' }}
-        />
-        <TableContainer component={Paper}>
-            <Table>
-                <TableHead>
-                    <TableRow>
-                    <TableCell>Potential</TableCell>
-                    <TableCell>Volume</TableCell>
-                    <TableCell>Avg Cpc</TableCell>
-                    <TableCell>Potential Traffic</TableCell>
-                    <TableCell>Conversions</TableCell>
-                    <TableCell>Sales</TableCell>
-                    <TableCell>Monthly Revenue Potential</TableCell>
-                    <TableCell>Annual Revenue</TableCell>
-                    </TableRow>
-                </TableHead>
-                <TableBody>
-                    {potentialsList.map((potential, index) => (
-                    <TableRow hover key={index}>
-                        <TableCell>{potential.f1}</TableCell>
-                        <TableCell>{potential.f2}</TableCell>
-                        <TableCell>{potential.f3}</TableCell>
-                        <TableCell>{potential.f4}</TableCell>
-                        <TableCell>{potential.f5}</TableCell>
-                        <TableCell>{potential.f6}</TableCell>
-                        <TableCell>{potential.f7}</TableCell>
-                        <TableCell>{potential.f8}</TableCell>
-                    </TableRow>
-                    ))}
-                </TableBody>
-            </Table>
-        </TableContainer>
-        </Card>
-    )
-   }
-   export default Potentials;
+interface PotentialDataProps {
+  potentialData: any
+}
+
+const Potentials = ({ potentialData }: PotentialDataProps) => {
+  // console.log(lables)
+
+  if (!potentialData) return <>Loading...</>
+
+  return (
+    <Card>
+      <CardHeader title='Weighted Keyword Potential Forecast' titleTypographyProps={{ variant: 'h6' }} />
+      <TableContainer component={Paper}>
+        <Table>
+          <TableHead>
+            <TableRow>
+              <TableCell>Potential</TableCell>
+              <TableCell>Volume</TableCell>
+              <TableCell>Avg Cpc</TableCell>
+              <TableCell>Traffic</TableCell>
+              <TableCell>Conversions</TableCell>
+              <TableCell>Sales</TableCell>
+              <TableCell>Monthly Revenue </TableCell>
+              <TableCell>Annual Revenue</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {['average_1_3', 'average_4_10'].map((k: string) =>
+              Object.keys(potentialData[k]).map((pkey: any) => (
+                <TableRow hover className={`potential-${pkey}`} key={potentialData[k][pkey]['id']}>
+                  <TableCell>{lables[k][pkey]}</TableCell>
+                  <TableCell>{potentialData[k][pkey]['search_volume']}</TableCell>
+                  <TableCell>{potentialData[k][pkey]['cpc']}</TableCell>
+                  <TableCell>{roundOff(potentialData[k][pkey]['traffic'])}</TableCell>
+                  <TableCell>{roundOff(potentialData[k][pkey]['conversion'])}</TableCell>
+                  <TableCell>{roundOff(potentialData[k][pkey]['sales'])}</TableCell>
+                  <TableCell>{roundOff(potentialData[k][pkey]['revenue'])}</TableCell>
+                  <TableCell>{roundOff(potentialData[k][pkey]['annual_revenue'])}</TableCell>
+                </TableRow>
+              ))
+            )}
+          </TableBody>
+        </Table>
+      </TableContainer>
+    </Card>
+  )
+}
+export default Potentials
