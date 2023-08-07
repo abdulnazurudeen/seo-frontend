@@ -46,7 +46,8 @@ const ForeCastForm = () => {
   const [selectedLocation, setSelectedLocation] = useState<Location | null>(null)
   const [locationOptions, setLocationOptions] = useState<Location[]>([])
   const [positions, setPositions] = useState<Position[]>([])
-  const [totalValue, setTotalValue] = useState<number>(0)
+
+  // const [totalValue, setTotalValue] = useState<number>(0)
   const [errors, setErrors] = useState<{ [key: string]: string }>({})
   const [fields, setFields] = useState<string[]>([''])
   const [state, setState] = useState({
@@ -122,15 +123,17 @@ const ForeCastForm = () => {
       adjustedPositions[index].value = remaining
       setPositions(adjustedPositions)
     }
-    calculateTotalValue(updatedPositions)
+
+    // calculateTotalValue(updatedPositions)
   }
-  const calculateTotalValue = (updatedPositions: Position[]) => {
-    const sum = updatedPositions.reduce((acc, position) => acc + position.value, 0)
-    setTotalValue(sum)
-  }
-  const validateTotalValue = (value: number) => {
-    return value !== 100
-  }
+
+  // const calculateTotalValue = (updatedPositions: Position[]) => {
+  //   const sum = updatedPositions.reduce((acc, position) => acc + position.value, 0)
+  //   setTotalValue(sum)
+  // }
+  // const validateTotalValue = (value: number) => {
+  //   return value !== 100
+  // }
 
   useEffect(() => {
     const { token } = cookie

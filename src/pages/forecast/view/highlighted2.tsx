@@ -1,15 +1,17 @@
-import { ReactElement } from 'react'
+// import { ReactElement } from 'react'
 import Box from '@mui/material/Box'
 import Grid from '@mui/material/Grid'
 import Card from '@mui/material/Card'
-import Avatar from '@mui/material/Avatar'
+
+// import Avatar from '@mui/material/Avatar'
 import CardHeader from '@mui/material/CardHeader'
 import Typography from '@mui/material/Typography'
 import CardContent from '@mui/material/CardContent'
-import TrendingUp from 'mdi-material-ui/TrendingUp'
-import CurrencyUsd from 'mdi-material-ui/CurrencyUsd'
-import CellphoneLink from 'mdi-material-ui/CellphoneLink'
-import AccountOutline from 'mdi-material-ui/AccountOutline'
+
+// import TrendingUp from 'mdi-material-ui/TrendingUp'
+// import CurrencyUsd from 'mdi-material-ui/CurrencyUsd'
+// import CellphoneLink from 'mdi-material-ui/CellphoneLink'
+// import AccountOutline from 'mdi-material-ui/AccountOutline'
 
 // ** Types
 import { ThemeColor } from 'src/@core/layouts/types'
@@ -18,6 +20,7 @@ interface DataType {
   stats: string
   title: string
   color: ThemeColor
+
   // icon: ReactElement
 }
 
@@ -26,36 +29,42 @@ const initSalesData: DataType[] = [
     stats: '',
     title: 'Conversion Rate %',
     color: 'primary'
+
     // icon: <TrendingUp sx={{ fontSize: '1.75rem' }} />
   },
   {
     stats: '',
     title: 'Lead to Sale',
     color: 'success'
+
     // icon: <AccountOutline sx={{ fontSize: '1.75rem' }} />
   },
   {
     stats: '',
     color: 'warning',
     title: 'Device'
+
     // icon: <CellphoneLink sx={{ fontSize: '1.75rem' }} />
   },
   {
     stats: '',
     color: 'info',
     title: 'Location'
+
     // icon: <CurrencyUsd sx={{ fontSize: '1.75rem' }} />
   },
   {
     stats: '',
     color: 'warning',
     title: 'Language'
+
     // icon: <CellphoneLink sx={{ fontSize: '1.75rem' }} />
   },
   {
     stats: '',
     color: 'info',
     title: 'OS'
+
     // icon: <CurrencyUsd sx={{ fontSize: '1.75rem' }} />
   }
 ]

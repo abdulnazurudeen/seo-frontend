@@ -1,21 +1,22 @@
 import Card from '@mui/material/Card'
 import Typography from '@mui/material/Typography'
 import CardContent from '@mui/material/CardContent'
-import { styled, useTheme } from '@mui/material/styles'
 
-const TriangleImg = styled('img')({
-  right: 0,
-  bottom: 0,
-  height: 170,
-  position: 'absolute'
-})
+// import { styled, useTheme } from '@mui/material/styles'
 
-const TrophyImg = styled('img')({
-  right: 36,
-  bottom: 20,
-  height: 98,
-  position: 'absolute'
-})
+// const TriangleImg = styled('img')({
+//   right: 0,
+//   bottom: 0,
+//   height: 170,
+//   position: 'absolute'
+// })
+
+// const TrophyImg = styled('img')({
+//   right: 36,
+//   bottom: 20,
+//   height: 98,
+//   position: 'absolute'
+// })
 
 interface HighLightProps {
   isLoading: boolean
@@ -23,8 +24,8 @@ interface HighLightProps {
 }
 
 const HighLight = ({ isLoading, orderVal }: HighLightProps) => {
-  const theme = useTheme()
-  const imageSrc = theme.palette.mode === 'light' ? 'triangle-light.png' : 'triangle-dark.png'
+  // const theme = useTheme()
+  // const imageSrc = theme.palette.mode === 'light' ? 'triangle-light.png' : 'triangle-dark.png'
   setTimeout(() => {
     // console.log(orderVal)
   }, 1000)
