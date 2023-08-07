@@ -5,6 +5,8 @@ import TableHead from '@mui/material/TableHead'
 import TableBody from '@mui/material/TableBody'
 import TableCell from '@mui/material/TableCell'
 import TableContainer from '@mui/material/TableContainer'
+import { Tooltip, Typography } from '@mui/material'
+import InfoRoundedIcon from 'mdi-material-ui/Information'
 
 // import TablePagination from '@mui/material/TablePagination'
 // import { useState, ChangeEvent } from 'react'
@@ -28,19 +30,43 @@ function TopTen({ report = [] }) {
         <Table>
           <TableHead>
             <TableRow>
-              <TableCell>Relevance Score (Overlap)"</TableCell>
-              <TableCell>Keyword"</TableCell>
-              <TableCell>Search Volume"</TableCell>
-              <TableCell>Cost per Click"</TableCell>
-              <TableCell>#4-10 Traffic"</TableCell>
-              <TableCell>#4-10 Conversions"</TableCell>
-              <TableCell>#4-10 Sales"</TableCell>
-              <TableCell>#4-10 Revenue"</TableCell>
+              <TableCell>
+                <Tooltip title='Relevance Score'>
+                  <Typography className='tablehead'>
+                    Overlap <InfoRoundedIcon fontSize={'small'} />
+                  </Typography>
+                </Tooltip>
+              </TableCell>
+              <TableCell>Keyword</TableCell>
+              <TableCell>
+                <Tooltip title='Search Volume'>
+                  <Typography className='tablehead'>
+                    S.V <InfoRoundedIcon fontSize={'small'} />
+                  </Typography>
+                </Tooltip>
+              </TableCell>
+              <TableCell>
+                <Tooltip title='Keyword Difficulty'>
+                  <Typography className='tablehead'>
+                    Difficulty <InfoRoundedIcon fontSize={'small'} />
+                  </Typography>
+                </Tooltip>
+              </TableCell>
+              <TableCell>
+                <Tooltip title='Cost per Click'>
+                  <Typography className='tablehead'>
+                    CPC <InfoRoundedIcon fontSize={'small'} />
+                  </Typography>
+                </Tooltip>
+              </TableCell>
+              <TableCell>Traffic</TableCell>
+              <TableCell>Conversions</TableCell>
+              <TableCell>Sales</TableCell>
+              <TableCell>Revenue</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {
-
               // TopThreeData.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
               report.map((row: any) => {
                 // console.log(row, 'row')
@@ -50,8 +76,8 @@ function TopTen({ report = [] }) {
                     <TableCell>{row.relevance_score_overlap}</TableCell>
                     <TableCell sx={{ minWidth: 300 }}>{row.keyword}</TableCell>
                     <TableCell>{row.search_volume}</TableCell>
-
-                    <TableCell>{row.cpc}</TableCell>
+                    <TableCell></TableCell>
+                    <TableCell>{row.cpc ? row.cpc : '-'}</TableCell>
                     <TableCell>{row.average_4_10.traffic}</TableCell>
                     <TableCell>{row.average_4_10.conversion}</TableCell>
                     <TableCell>{row.average_4_10.sale}</TableCell>

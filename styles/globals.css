@@ -31,3 +31,8 @@ code[class*='language-'] {
 .potential-good {
   background-color: rgb(244, 204, 204);
 }
+
+th .tablehead {
+  font-size: 0.75rem;
+  font-weight: 600;
+}

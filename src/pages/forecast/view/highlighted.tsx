@@ -35,18 +35,13 @@ const HighLight = ({ isLoading, orderVal }: HighLightProps) => {
   return (
     <Card sx={{ position: 'relative' }}>
       <CardContent>
-        <Typography variant='h6'>Average Order Value</Typography>
+        <Typography>Average Order Value</Typography>
         <Typography variant='body2' sx={{ letterSpacing: '0.25px' }}>
           Based on the customer data
         </Typography>
-        <Typography variant='h5' sx={{ my: 4, color: 'primary.main' }}>
+        <Typography variant='h6' sx={{ my: 4, color: 'primary.main' }}>
           ${orderVal}
         </Typography>
-        {/* <Button size='small' variant='contained'>
-          View More
-        </Button> */}
-        <TriangleImg alt='triangle background' src={`/images/misc/${imageSrc}`} />
-        <TrophyImg alt='trophy' src='/images/misc/trophy.png' />
       </CardContent>
     </Card>
   )

@@ -358,15 +358,15 @@ const ForeCastForm = () => {
               </Grid>
             ))}
             <Grid item xs={4}></Grid>
-            <Grid item xs={12}>
+            {/* <Grid item xs={12}>
               <Typography variant='subtitle1' gutterBottom>
                 Total Position Value: <strong>{totalValue}</strong>
               </Typography>
               {!validateTotalValue(totalValue) && (
                 <FormHelperText error>Sum of position values must not exceed 100.</FormHelperText>
               )}
-            </Grid>
-            <Grid item xs={4}>
+            </Grid> */}
+            {/* <Grid item xs={4}>
               <TextField
                 fullWidth
                 type='number'
@@ -376,8 +376,8 @@ const ForeCastForm = () => {
                 label='Enter One Three Average Value'
                 placeholder='Enter Value'
               />
-            </Grid>
-            <Grid item xs={4}>
+            </Grid> */}
+            {/* <Grid item xs={4}>
               <TextField
                 fullWidth
                 type='number'
@@ -387,7 +387,7 @@ const ForeCastForm = () => {
                 label='Enter Four Ten Average Value'
                 placeholder='Enter Value'
               />
-            </Grid>
+            </Grid> */}
             <Divider
               sx={{ mt: 0, mb: 1 }}
               style={{ borderBottom: '1px solid #ccc', width: '100%', marginTop: '20px' }}

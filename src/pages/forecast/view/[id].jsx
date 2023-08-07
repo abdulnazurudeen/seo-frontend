@@ -238,6 +238,9 @@ const ForcastList = () => {
             <TabPanel value={value} index={0}>
               <ApexChartWrapper>
                 <Grid container spacing={6}>
+                  <Grid item xs={12} md={12}>
+                    <Potentials potentialData={dashboardReportData} />
+                  </Grid>
                   <Grid item xs={12} md={4}>
                     <HighLight isLoading={isLoading} orderVal={dashboardData.enter_average_order_value} />
                   </Grid>
@@ -246,9 +249,6 @@ const ForcastList = () => {
                   </Grid>
                   <Grid item xs={12} md={12}>
                     <Positions posistionList={posistionList} />
-                  </Grid>
-                  <Grid item xs={12} md={12}>
-                    <Potentials potentialData={dashboardReportData} />
                   </Grid>
                   <Grid item xs={12} md={6}>
                     {/* <ViewChartOne />  NEED TO FIX */}

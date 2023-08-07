@@ -18,53 +18,53 @@ interface DataType {
   stats: string
   title: string
   color: ThemeColor
-  icon: ReactElement
+  // icon: ReactElement
 }
 
 const initSalesData: DataType[] = [
   {
     stats: '',
     title: 'Conversion Rate %',
-    color: 'primary',
-    icon: <TrendingUp sx={{ fontSize: '1.75rem' }} />
+    color: 'primary'
+    // icon: <TrendingUp sx={{ fontSize: '1.75rem' }} />
   },
   {
     stats: '',
     title: 'Lead to Sale',
-    color: 'success',
-    icon: <AccountOutline sx={{ fontSize: '1.75rem' }} />
+    color: 'success'
+    // icon: <AccountOutline sx={{ fontSize: '1.75rem' }} />
   },
   {
     stats: '',
     color: 'warning',
-    title: 'Device',
-    icon: <CellphoneLink sx={{ fontSize: '1.75rem' }} />
+    title: 'Device'
+    // icon: <CellphoneLink sx={{ fontSize: '1.75rem' }} />
   },
   {
     stats: '',
     color: 'info',
-    title: 'Location',
-    icon: <CurrencyUsd sx={{ fontSize: '1.75rem' }} />
+    title: 'Location'
+    // icon: <CurrencyUsd sx={{ fontSize: '1.75rem' }} />
   },
   {
     stats: '',
     color: 'warning',
-    title: 'Language',
-    icon: <CellphoneLink sx={{ fontSize: '1.75rem' }} />
+    title: 'Language'
+    // icon: <CellphoneLink sx={{ fontSize: '1.75rem' }} />
   },
   {
     stats: '',
     color: 'info',
-    title: 'OS',
-    icon: <CurrencyUsd sx={{ fontSize: '1.75rem' }} />
+    title: 'OS'
+    // icon: <CurrencyUsd sx={{ fontSize: '1.75rem' }} />
   }
 ]
 
 const renderStats = () => {
   return initSalesData.map((item: DataType, index: number) => (
-    <Grid item xs={12} mb={5} sm={6} key={index}>
-      <Box key={index} sx={{ display: 'flex', alignItems: 'center' }}>
-        <Avatar
+    <Grid item xs={12} sm={6} key={index}>
+      <Box sx={{ display: 'flex', alignItems: 'center' }}>
+        {/* <Avatar
           variant='rounded'
           sx={{
             mr: 3,
@@ -76,10 +76,10 @@ const renderStats = () => {
           }}
         >
           {item.icon}
-        </Avatar>
+        </Avatar> */}
         <Box sx={{ display: 'flex', flexDirection: 'column' }}>
           <Typography variant='caption'>{item.title}</Typography>
-          <Typography variant='h6'>{item.stats}</Typography>
+          <Typography variant='body1'>{item.stats}</Typography>
         </Box>
       </Box>
     </Grid>

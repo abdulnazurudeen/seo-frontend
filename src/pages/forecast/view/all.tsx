@@ -5,6 +5,8 @@ import TableHead from '@mui/material/TableHead'
 import TableBody from '@mui/material/TableBody'
 import TableCell from '@mui/material/TableCell'
 import TableContainer from '@mui/material/TableContainer'
+import { Tooltip, Typography } from '@mui/material'
+import InfoRoundedIcon from 'mdi-material-ui/Information'
 
 // import TablePagination from '@mui/material/TablePagination'
 // import { useState, ChangeEvent } from 'react'
@@ -30,11 +32,37 @@ const All = ({ report = [] }) => {
         <Table>
           <TableHead>
             <TableRow>
-              <TableCell>Relevance Score - Overlap</TableCell>
+              <TableCell>
+                <Tooltip title='Relevance Score'>
+                  <Typography className='tablehead'>
+                    Overlap <InfoRoundedIcon fontSize={'small'} />
+                  </Typography>
+                </Tooltip>
+              </TableCell>
+
               <TableCell>Keyword</TableCell>
-              <TableCell>Search Volume</TableCell>
-              <TableCell>Keyword Difficulty</TableCell>
-              <TableCell>Cost per Click</TableCell>
+              <TableCell>
+                <Tooltip title='Search Volume'>
+                  <Typography className='tablehead'>
+                    S.V <InfoRoundedIcon fontSize={'small'} />
+                  </Typography>
+                </Tooltip>
+              </TableCell>
+              <TableCell>
+                <Tooltip title='Keyword Difficulty'>
+                  <Typography className='tablehead'>
+                    Difficulty <InfoRoundedIcon fontSize={'small'} />
+                  </Typography>
+                </Tooltip>
+              </TableCell>
+
+              <TableCell>
+                <Tooltip title='Cost per Click'>
+                  <Typography className='tablehead'>
+                    CPC <InfoRoundedIcon fontSize={'small'} />
+                  </Typography>
+                </Tooltip>
+              </TableCell>
               <TableCell>#1 Traffic</TableCell>
               <TableCell>#1 Conversions</TableCell>
               <TableCell>#1 Sales</TableCell>
@@ -85,7 +113,7 @@ const All = ({ report = [] }) => {
                   <TableCell sx={{ minWidth: 300 }}>{row.keyword}</TableCell>
                   <TableCell>{row.search_volume}</TableCell>
                   <TableCell>{row.keyword_difficulty}</TableCell>
-                  <TableCell>{row.cpc}</TableCell>
+                  <TableCell>{row.cpc ? row.cpc : '-'}</TableCell>
                   {Object.keys(row.all_position).map(posid => {
                     const posdata = row.all_position[posid]
 
