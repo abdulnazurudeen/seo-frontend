@@ -187,7 +187,7 @@ const ForeCastForm = () => {
         }))
 
         setPositions(positionsData)
-        calculateTotalValue(positionsData)
+        // calculateTotalValue(positionsData)
       } catch (error) {
         console.error(error)
       }
