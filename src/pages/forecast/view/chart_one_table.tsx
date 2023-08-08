@@ -18,14 +18,16 @@ const ChartOneTable = ({ lables, col1, col2, headings }: ChartOneTableProps) => 
     <TableContainer component={Paper}>
       <Table>
         <TableHead>
-          <TableRow>
-            <TableCell>Total Keyword Marketplace Potential</TableCell>
-            <TableCell>{headings[0]}</TableCell>
-            <TableCell>{headings[1]}</TableCell>
-          </TableRow>
+          {headings && (
+            <TableRow>
+              <TableCell>Total Keyword Marketplace Potential</TableCell>
+              <TableCell>{headings[0]}</TableCell>
+              <TableCell>{headings[1]}</TableCell>
+            </TableRow>
+          )}
         </TableHead>
         <TableBody>
-          {lables.map((label: string, index: number) => (
+          {lables?.map((label: string, index: number) => (
             <TableRow key={index}>
               <TableCell>{label}</TableCell>
               <TableCell>{col1[index]}</TableCell>
