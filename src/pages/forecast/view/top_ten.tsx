@@ -77,7 +77,7 @@ function TopTen({ report = [] }) {
                     <TableCell>{row.relevance_score_overlap}</TableCell>
                     <TableCell sx={{ minWidth: 300 }}>{row.keyword}</TableCell>
                     <TableCell>{row.search_volume}</TableCell>
-                    <TableCell></TableCell>
+                    <TableCell>{row.keyword_difficulty}</TableCell>
                     <TableCell>{row.cpc ? row.cpc : '-'}</TableCell>
                     <TableCell>{row.average_4_10.traffic}</TableCell>
                     <TableCell>{row.average_4_10.conversion}</TableCell>

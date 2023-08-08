@@ -16,8 +16,8 @@ import HighLight2 from './highlighted2'
 
 import Potentials from './potentials'
 
-// import ViewChartOne from './chart1'
-// import ViewChartTwo from './chart2'
+import ViewChartOne from './chart1'
+
 import TopThree from './top_three'
 import TopTen from './top_ten'
 import All from './all'
@@ -251,10 +251,40 @@ const ForcastList = () => {
                     <Positions posistionList={posistionList} />
                   </Grid>
                   <Grid item xs={12} md={6}>
-                    {/* <ViewChartOne />  NEED TO FIX */}
+                    <ViewChartOne
+                      data={dashboardReportData}
+                      barKey='search_volume'
+                      barLabel='Volume'
+                      lineKey='traffic'
+                      lineLabel='Potential Traffic'
+                    />
                   </Grid>
                   <Grid item xs={12} md={6}>
-                    {/* <ViewChartTwo />  NEED TO FIX */}
+                    <ViewChartOne
+                      data={dashboardReportData}
+                      barKey='traffic'
+                      barLabel='Potential Traffic'
+                      lineKey='conversion'
+                      lineLabel='Conversion'
+                    />
+                  </Grid>
+                  <Grid item xs={12} md={6}>
+                    <ViewChartOne
+                      data={dashboardReportData}
+                      barKey='traffic'
+                      barLabel='Potential Traffic'
+                      lineKey='sales'
+                      lineLabel='Sales'
+                    />
+                  </Grid>
+                  <Grid item xs={12} md={6}>
+                    <ViewChartOne
+                      data={dashboardReportData}
+                      barKey='traffic'
+                      barLabel='Potential Traffic'
+                      lineKey='revenue'
+                      lineLabel='Monthly Revenue'
+                    />
                   </Grid>
                 </Grid>
               </ApexChartWrapper>
