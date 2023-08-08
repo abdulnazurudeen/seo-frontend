@@ -484,7 +484,7 @@ const ForeCastForm = () => {
                   >
                     <MenuItem value={'desktop'}>Desktop</MenuItem>
                     <MenuItem value={'mobile'}>Mobile</MenuItem>
-                    <MenuItem value={'tab'}>Tab</MenuItem>
+                    {/* <MenuItem value={'tab'}>Tab</MenuItem> */}
                   </Select>
                   {Boolean(errors.device) && (
                     <FormHelperText style={{ color: '#FF4C51' }}>{errors.device}</FormHelperText>

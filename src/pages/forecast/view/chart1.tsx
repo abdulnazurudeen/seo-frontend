@@ -4,6 +4,7 @@ import Card from '@mui/material/Card'
 import CardHeader from '@mui/material/CardHeader'
 import ChartOneTable from './chart_one_table'
 import Switch from '@mui/material/Switch'
+import { roundOff } from 'src/@core/utils/helper'
 
 const labels: any = [
   'Best (1/2 these keywords in 1-3)',
@@ -32,8 +33,8 @@ const ViewChartOne = ({ data, barKey, barLabel, lineKey, lineLabel }: ViewChartP
       ;['average_1_3', 'average_4_10'].forEach(i => {
         ;['best', 'better', 'good'].forEach(j => {
           const item = data[i][j]
-          barvals.push(item[barKey])
-          linevals.push(item[lineKey])
+          barvals.push(roundOff(item[barKey]))
+          linevals.push(roundOff(item[lineKey]))
         })
       })
       setBarData(barvals)
@@ -84,7 +85,7 @@ const ViewChartOne = ({ data, barKey, barLabel, lineKey, lineLabel }: ViewChartP
   return (
     <Card>
       <CardHeader
-        title='Volume and Potential Traffic'
+        title={`${barLabel} and ${lineLabel}`}
         titleTypographyProps={{ variant: 'h6' }}
         action={<Switch {...label} onChange={handleChange} />}
       />
