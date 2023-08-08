@@ -12,6 +12,8 @@ import { useRouter } from 'next/router'
 import baseConst from '../../../data/const'
 import axios from 'axios'
 import { useCookies } from 'react-cookie'
+import { formatPrice, getForecastList } from 'src/@core/utils/helper'
+import { Tooltip, Typography } from '@mui/material'
 
 interface Column {
   id: string
@@ -19,19 +21,26 @@ interface Column {
   minWidth?: number
   child?: string
   align?: 'left'
+  tooltip?: string
   format?: (value: number) => string
+}
+
+interface PaggerProps {
+  count: number
+  next: string | null
+  previous: string | null
 }
 
 const columns: readonly Column[] = [
   { id: 'keyword', label: 'Keyword', minWidth: 100 },
-  { id: 'conversion_rate', label: 'Conversion Rate', minWidth: 100 },
+  { id: 'conversion_rate', label: 'C.R', tooltip: 'Conversion Rate', minWidth: 100 },
   { id: 'lead_to_sale', label: 'Lead to Sale', minWidth: 100 },
-  { id: 'enter_average_order_value', label: 'Average Order Value', minWidth: 100 },
+  { id: 'enter_average_order_value', label: 'A.O.V', tooltip: 'Average Order Value', minWidth: 100 },
   { id: 'device', label: 'Device', minWidth: 100 },
   { id: 'location_object', child: 'location_name', label: 'Location', minWidth: 100 },
   { id: 'language_object', child: 'language_name', label: 'Language', minWidth: 100 },
   { id: 'os', label: 'OS', minWidth: 100 },
-  { id: 'no_of_related_keyword', label: 'No. of Related Keyword', minWidth: 100 }
+  { id: 'no_of_related_keyword', tooltip: 'No. of Related Keyword', label: 'No. R.K', minWidth: 100 }
 ]
 
 const statusFormat = (state: String) => {
@@ -47,7 +56,8 @@ const statusFormat = (state: String) => {
 const ForeCastListTable = () => {
   const [responseData, setResponseData] = useState([])
   const [page, setPage] = useState<number>(0)
-  const [rowsPerPage, setRowsPerPage] = useState<number>(10)
+  const [rowsPerPage, setRowsPerPage] = useState<number>(1)
+  const [pagger, setPagger] = useState({})
   const handleChangePage = (event: unknown, newPage: number) => {
     setPage(newPage)
   }
@@ -63,22 +73,26 @@ const ForeCastListTable = () => {
   const [cookie] = useCookies(['token'])
   useEffect(() => {
     const { token } = cookie
-    console.log(token, 'list token')
-    const getForecastList = async () => {
-      try {
-        const response = await axios.get(baseConst.apiUrl + 'v1/forecast/', {
-          headers: {
-            Authorization: `Token ${token}`,
-            Accept: 'application/json',
-            'Content-Type': 'application/json'
-          }
-        })
-        setResponseData(response.data.results)
-      } catch (error) {
-        console.error(error)
-      }
+    const getList = async () => {
+      const { results, count, next, previous } = await getForecastList(token, page + 1, rowsPerPage)
+      setResponseData(results)
+      // try {
+      //   const response = await axios.get(`${baseConst.apiUrl}v1/forecast/?page=${page + 1}&page_size=${rowsPerPage}`, {
+      //     headers: {
+      //       Authorization: `Token ${token}`,
+      //       Accept: 'application/json',
+      //       'Content-Type': 'application/json'
+      //     }
+      //   })
+      //   const {
+      //     data: { results, count, next, previous }
+      //   } = response
+      //   setResponseData(results)
+      // } catch (error) {
+      //   console.error(error)
+      // }
     }
-    getForecastList()
+    getList()
   }, [cookie])
 
   return (
@@ -89,14 +103,21 @@ const ForeCastListTable = () => {
             <TableRow>
               {columns.map(column => (
                 <TableCell key={column.id} align={column.align} sx={{ minWidth: column.minWidth }}>
-                  {column.label}
+                  {column.tooltip ? (
+                    <Tooltip className='tablehead' title={column.tooltip}>
+                      <Typography>{column.label}</Typography>
+                    </Tooltip>
+                  ) : (
+                    column.label
+                  )}
                 </TableCell>
               ))}
               <TableCell sx={{ minWidth: '50' }}>Action</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
-            {responseData.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row: any) => {
+            {/* {slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)} */}
+            {responseData.map((row: any) => {
               return (
                 <TableRow hover role='checkbox' tabIndex={-1} key={row.id}>
                   {columns.map(column => {
@@ -106,7 +127,9 @@ const ForeCastListTable = () => {
 
                       return (
                         <TableCell key={column.id} align={column.align}>
-                          {column.format && typeof child_value === 'number' ? column.format(child_value) : child_value}
+                          {column.format && typeof child_value === 'number'
+                            ? formatPrice(column.format(child_value))
+                            : child_value}
                         </TableCell>
                       )
                     }
