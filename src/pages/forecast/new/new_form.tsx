@@ -77,6 +77,13 @@ const ForeCastForm = () => {
       ...prevState,
       [name]: value
     }))
+    // reset value on select
+    if (name == 'device') {
+      setState(prevState => ({
+        ...prevState,
+        os: ''
+      }))
+    }
   }
   const addField = () => {
     setFields([...fields, ''])
@@ -296,6 +303,11 @@ const ForeCastForm = () => {
     }
   }
 
+  const os_options: any = {
+    desktop: { windows: 'Windows', macos: 'Mac Os' },
+    mobile: { android: 'Android', ios: 'IOS' }
+  }
+
   return (
     <Card>
       <CardHeader
@@ -475,6 +487,7 @@ const ForeCastForm = () => {
                 <FormControl fullWidth>
                   <InputLabel id='demo-simple-select-label'>What is Your Device</InputLabel>
                   <Select
+                    required
                     labelId='demo-simple-select-label'
                     id='demo-simple-select'
                     name='device'
@@ -497,6 +510,7 @@ const ForeCastForm = () => {
                 <FormControl fullWidth>
                   <InputLabel id='demo-simple-select-label'>OS</InputLabel>
                   <Select
+                    required
                     labelId='demo-simple-select-label'
                     id='os-select'
                     name='os'
@@ -504,10 +518,13 @@ const ForeCastForm = () => {
                     label='OS'
                     onChange={handleChange}
                   >
-                    <MenuItem value={'windows'}>Windows</MenuItem>
-                    <MenuItem value={'mac'}>Mac</MenuItem>
-                    <MenuItem value={'android'}>Android</MenuItem>
-                    <MenuItem value={'ios'}>IOS</MenuItem>
+                    {state.device &&
+                      os_options[state.device] &&
+                      Object.keys(os_options[state.device]).map((item, ind) => (
+                        <MenuItem key={item} value={item}>
+                          {os_options[state.device][item]}
+                        </MenuItem>
+                      ))}
                   </Select>
                   {Boolean(errors.os) && <FormHelperText style={{ color: '#FF4C51' }}>{errors.os}</FormHelperText>}
                 </FormControl>
