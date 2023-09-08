@@ -9,8 +9,9 @@ import TableContainer from '@mui/material/TableContainer'
 import TablePagination from '@mui/material/TablePagination'
 import Button from '@mui/material/Button'
 import { useRouter } from 'next/router'
-import baseConst from '../../../data/const'
-import axios from 'axios'
+
+// import baseConst from '../../../data/const'
+// import axios from 'axios'
 import { useCookies } from 'react-cookie'
 import { formatPrice, getForecastList } from 'src/@core/utils/helper'
 import { Tooltip, Typography } from '@mui/material'
@@ -25,11 +26,11 @@ interface Column {
   format?: (value: number) => string
 }
 
-interface PaggerProps {
-  count: number
-  next: string | null
-  previous: string | null
-}
+// interface PaggerProps {
+//   count: number
+//   next: string | null
+//   previous: string | null
+// }
 
 const columns: readonly Column[] = [
   { id: 'keyword', label: 'Keyword', minWidth: 100 },
@@ -57,7 +58,8 @@ const ForeCastListTable = () => {
   const [responseData, setResponseData] = useState([])
   const [page, setPage] = useState<number>(0)
   const [rowsPerPage, setRowsPerPage] = useState<number>(1)
-  const [pagger, setPagger] = useState({})
+
+  // const [pagger, setPagger] = useState({})
   const handleChangePage = (event: unknown, newPage: number) => {
     setPage(newPage)
   }
@@ -74,8 +76,9 @@ const ForeCastListTable = () => {
   useEffect(() => {
     const { token } = cookie
     const getList = async () => {
-      const { results, count, next, previous } = await getForecastList(token, page + 1, rowsPerPage)
+      const { results } = await getForecastList(token, page + 1, rowsPerPage) //count, next, previous
       setResponseData(results)
+
       // try {
       //   const response = await axios.get(`${baseConst.apiUrl}v1/forecast/?page=${page + 1}&page_size=${rowsPerPage}`, {
       //     headers: {

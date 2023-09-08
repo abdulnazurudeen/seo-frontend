@@ -77,6 +77,7 @@ const ForeCastForm = () => {
       ...prevState,
       [name]: value
     }))
+
     // reset value on select
     if (name == 'device') {
       setState(prevState => ({
@@ -520,7 +521,7 @@ const ForeCastForm = () => {
                   >
                     {state.device &&
                       os_options[state.device] &&
-                      Object.keys(os_options[state.device]).map((item, ind) => (
+                      Object.keys(os_options[state.device]).map(item => (
                         <MenuItem key={item} value={item}>
                           {os_options[state.device][item]}
                         </MenuItem>
