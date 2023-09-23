@@ -57,7 +57,7 @@ const statusFormat = (state: String) => {
 const ForeCastListTable = () => {
   const [responseData, setResponseData] = useState([])
   const [page, setPage] = useState<number>(0)
-  const [rowsPerPage, setRowsPerPage] = useState<number>(1)
+  const [rowsPerPage, setRowsPerPage] = useState<number>(10)
 
   // const [pagger, setPagger] = useState({})
   const handleChangePage = (event: unknown, newPage: number) => {
