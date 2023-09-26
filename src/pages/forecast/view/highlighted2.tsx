@@ -19,6 +19,7 @@ import { ThemeColor } from 'src/@core/layouts/types'
 interface DataType {
   stats: string
   title: string
+  sufix?: string
   color: ThemeColor
 
   // icon: ReactElement
@@ -27,7 +28,8 @@ interface DataType {
 const initSalesData: DataType[] = [
   {
     stats: '',
-    title: 'Conversion Rate %',
+    title: 'Conversion Rate',
+    sufix: '%',
     color: 'primary'
 
     // icon: <TrendingUp sx={{ fontSize: '1.75rem' }} />
@@ -35,16 +37,10 @@ const initSalesData: DataType[] = [
   {
     stats: '',
     title: 'Lead to Sale',
+    sufix: '%',
     color: 'success'
 
     // icon: <AccountOutline sx={{ fontSize: '1.75rem' }} />
-  },
-  {
-    stats: '',
-    color: 'warning',
-    title: 'Device'
-
-    // icon: <CellphoneLink sx={{ fontSize: '1.75rem' }} />
   },
   {
     stats: '',
@@ -62,6 +58,13 @@ const initSalesData: DataType[] = [
   },
   {
     stats: '',
+    color: 'warning',
+    title: 'Device'
+
+    // icon: <CellphoneLink sx={{ fontSize: '1.75rem' }} />
+  },
+  {
+    stats: '',
     color: 'info',
     title: 'OS'
 
@@ -71,24 +74,14 @@ const initSalesData: DataType[] = [
 
 const renderStats = () => {
   return initSalesData.map((item: DataType, index: number) => (
-    <Grid item xs={12} sm={6} key={index}>
+    <Grid item xs={6} sm={2} key={index}>
       <Box sx={{ display: 'flex', alignItems: 'center' }}>
-        {/* <Avatar
-          variant='rounded'
-          sx={{
-            mr: 3,
-            width: 44,
-            height: 44,
-            boxShadow: 3,
-            color: 'common.white',
-            backgroundColor: `${item.color}.main`
-          }}
-        >
-          {item.icon}
-        </Avatar> */}
         <Box sx={{ display: 'flex', flexDirection: 'column' }}>
           <Typography variant='caption'>{item.title}</Typography>
-          <Typography variant='body1'>{item.stats}</Typography>
+          <Typography variant='body1'>
+            {item.stats}
+            {item?.sufix}
+          </Typography>
         </Box>
       </Box>
     </Grid>
@@ -100,7 +93,7 @@ interface HighLightProps {
 }
 const HighLight2 = ({ salesData }: HighLightProps) => {
   salesData?.map((item: DataType) => {
-    initSalesData.map(x => {
+    initSalesData.forEach(x => {
       if (x.title == item.title) {
         x.stats = item.stats
       }
@@ -114,14 +107,11 @@ const HighLight2 = ({ salesData }: HighLightProps) => {
         style={{ paddingBottom: 0 }}
         titleTypographyProps={{
           sx: {
-            mb: 0.5,
-            pb: 0,
-            lineHeight: '2rem !important',
-            letterSpacing: '0.15px !important'
+            pb: 0
           }
         }}
       />
-      <CardContent sx={{ pt: theme => `${theme.spacing(3)} !important` }}>
+      <CardContent>
         <Grid container spacing={[5, 0]}>
           {renderStats()}
         </Grid>

@@ -123,7 +123,7 @@ const ForcastList = () => {
         const salesData = [
           {
             stats: response.data.conversion_rate,
-            title: 'Conversion Rate %'
+            title: 'Conversion Rate'
           },
           {
             stats: response.data.lead_to_sale,
@@ -211,7 +211,7 @@ const ForcastList = () => {
           <CardHeader
             title={
               <>
-                <span>Forcasting Report</span> - <span style={{ color: '#f00' }}>{dashboardData?.keyword}</span> -
+                <span>Forcasting Report</span> <span style={{ color: '#f00' }}>{dashboardData?.keyword}</span>
                 <Chip label={dashboardData.report_status} color='success' />
               </>
             }
@@ -238,15 +238,16 @@ const ForcastList = () => {
             <TabPanel value={value} index={0}>
               <ApexChartWrapper>
                 <Grid container spacing={6}>
+                  <Grid item xs={12} md={3}>
+                    <HighLight isLoading={isLoading} orderVal={dashboardData.enter_average_order_value} />
+                  </Grid>
+                  <Grid item xs={12} md={9}>
+                    <HighLight2 salesData={getSalesData} />
+                  </Grid>
                   <Grid item xs={12} md={12}>
                     <Potentials potentialData={dashboardReportData} />
                   </Grid>
-                  <Grid item xs={12} md={4}>
-                    <HighLight isLoading={isLoading} orderVal={dashboardData.enter_average_order_value} />
-                  </Grid>
-                  <Grid item xs={12} md={8}>
-                    <HighLight2 salesData={getSalesData} />
-                  </Grid>
+
                   <Grid item xs={12} md={12}>
                     <Positions posistionList={posistionList} />
                   </Grid>

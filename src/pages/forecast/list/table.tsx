@@ -35,13 +35,14 @@ interface Column {
 const columns: readonly Column[] = [
   { id: 'keyword', label: 'Keyword', minWidth: 100 },
   { id: 'conversion_rate', label: 'C.R', tooltip: 'Conversion Rate', minWidth: 100 },
-  { id: 'lead_to_sale', label: 'Lead to Sale', minWidth: 100 },
-  { id: 'enter_average_order_value', label: 'A.O.V', tooltip: 'Average Order Value', minWidth: 100 },
-  { id: 'device', label: 'Device', minWidth: 100 },
+
+  // { id: 'lead_to_sale', label: 'Lead to Sale', minWidth: 100 },
+  // { id: 'enter_average_order_value', label: 'A.O.V', tooltip: 'Average Order Value', minWidth: 100 },
+  { id: 'deice_os', label: 'Device & OS', minWidth: 100 }, // NA - desktop_widows 
   { id: 'location_object', child: 'location_name', label: 'Location', minWidth: 100 },
-  { id: 'language_object', child: 'language_name', label: 'Language', minWidth: 100 },
-  { id: 'os', label: 'OS', minWidth: 100 },
-  { id: 'no_of_related_keyword', tooltip: 'No. of Related Keyword', label: 'No. R.K', minWidth: 100 }
+  { id: 'language_object', child: 'language_name', label: 'Language', minWidth: 100 }
+
+  // { id: 'no_of_related_keyword', tooltip: 'No. of Related Keyword', label: 'No. R.K', minWidth: 100 }
 ]
 
 const statusFormat = (state: String) => {
@@ -58,13 +59,14 @@ const ForeCastListTable = () => {
   const [responseData, setResponseData] = useState([])
   const [page, setPage] = useState<number>(0)
   const [rowsPerPage, setRowsPerPage] = useState<number>(10)
+  const [cookie] = useCookies(['token'])
 
   // const [pagger, setPagger] = useState({})
   const handleChangePage = (event: unknown, newPage: number) => {
     setPage(newPage)
   }
   const handleChangeRowsPerPage = (event: ChangeEvent<HTMLInputElement>) => {
-    setRowsPerPage(+event.target.value)
+    setRowsPerPage(parseInt(event.target.value))
     setPage(0)
   }
   const router = useRouter()
@@ -72,31 +74,15 @@ const ForeCastListTable = () => {
     e.preventDefault()
     router.push(path)
   }
-  const [cookie] = useCookies(['token'])
+
   useEffect(() => {
     const { token } = cookie
     const getList = async () => {
       const { results } = await getForecastList(token, page + 1, rowsPerPage) //count, next, previous
       setResponseData(results)
-
-      // try {
-      //   const response = await axios.get(`${baseConst.apiUrl}v1/forecast/?page=${page + 1}&page_size=${rowsPerPage}`, {
-      //     headers: {
-      //       Authorization: `Token ${token}`,
-      //       Accept: 'application/json',
-      //       'Content-Type': 'application/json'
-      //     }
-      //   })
-      //   const {
-      //     data: { results, count, next, previous }
-      //   } = response
-      //   setResponseData(results)
-      // } catch (error) {
-      //   console.error(error)
-      // }
     }
     getList()
-  }, [cookie])
+  }, [cookie, page, rowsPerPage])
 
   return (
     <Paper sx={{ width: '100%', overflow: 'hidden' }}>

@@ -226,11 +226,12 @@ const ForeCastForm = () => {
     if (!state.count) {
       validationErrors.count = 'No of Keywords is required'
     }
-    if (!state.os.trim()) {
-      validationErrors.os = 'OS is required'
-    }
-    if (!state.device.trim()) {
-      validationErrors.device = 'Device is required'
+
+    if (state.device.trim()) {
+      // validationErrors.device = 'Device is required'
+      if (!state.os.trim()) {
+        validationErrors.os = 'OS is required, you have selected Device'
+      }
     }
     if (!selectedLocation) {
       validationErrors.selectedLocation = 'Location is required'
@@ -245,8 +246,9 @@ const ForeCastForm = () => {
 
   const createForecast = (event: React.FormEvent) => {
     event.preventDefault()
-    if (validateForm()) {
+    if (!validateForm()) {
       console.log(errors)
+      return
     }
     const { token } = cookie
     const getPosVal: any = {}
@@ -254,11 +256,6 @@ const ForeCastForm = () => {
       getPosVal[item.name] = item.value
     })
 
-    // const currentDate = new Date().toLocaleDateString('en-US', {
-    //   year: 'numeric',
-    //   month: '2-digit',
-    //   day: '2-digit'
-    // })
     const postData = {
       keyword: fields,
       conversion_rate: state.conversion_rate,
@@ -345,36 +342,14 @@ const ForeCastForm = () => {
                   </Box>
                 ))}
                 <Button onClick={addField} variant='contained' color='primary'>
-                  Add Field
+                  Add Keyword
                 </Button>
                 {Boolean(errors.fields) && (
                   <FormHelperText style={{ color: '#FF4C51' }}>{errors.fields}</FormHelperText>
                 )}
               </div>
             </Grid>
-            <Divider
-              sx={{ mt: 0, mb: 1 }}
-              style={{ borderBottom: '1px solid #ccc', width: '100%', marginTop: '20px' }}
-            />
-            <Grid item xs={12}>
-              <Typography variant='h6' component='h4' gutterBottom>
-                Position Values
-              </Typography>
-            </Grid>
-            {positions.map((position, index) => (
-              <Grid item xs={2} key={index}>
-                <FormControl fullWidth>
-                  <TextField
-                    type='number'
-                    inputProps={{ min: 0, max: 100, step: '0.01' }}
-                    label={position.name.toUpperCase()}
-                    value={position.value}
-                    onChange={handleSliderChange(index)}
-                  />
-                </FormControl>
-              </Grid>
-            ))}
-            <Grid item xs={4}></Grid>
+
             {/* <Grid item xs={12}>
               <Typography variant='subtitle1' gutterBottom>
                 Total Position Value: <strong>{totalValue}</strong>
@@ -413,6 +388,7 @@ const ForeCastForm = () => {
             <Grid item xs={3}>
               <TextField
                 fullWidth
+                required
                 type='number'
                 name='conversion_rate'
                 inputProps={{ min: 0, max: 100 }}
@@ -427,6 +403,7 @@ const ForeCastForm = () => {
             <Grid item xs={3}>
               <TextField
                 fullWidth
+                required
                 type='number'
                 name='lead_close_rate'
                 inputProps={{ min: 0, max: 100 }}
@@ -445,6 +422,7 @@ const ForeCastForm = () => {
                 name='order_val'
                 value={state.order_val}
                 onChange={handleChange}
+                required
                 label='Enter Average Order Value'
                 placeholder='Enter your value'
                 error={Boolean(errors.order_val)}
@@ -454,6 +432,7 @@ const ForeCastForm = () => {
             <Grid item xs={3}>
               <TextField
                 fullWidth
+                required
                 type='number'
                 name='count'
                 value={state.count}
@@ -462,6 +441,7 @@ const ForeCastForm = () => {
                 placeholder='Enter your value'
                 error={Boolean(errors.count)}
                 helperText={errors.count}
+                inputProps={{ max: 100 }}
               />
             </Grid>
             <Grid item xs={6}>
@@ -488,14 +468,14 @@ const ForeCastForm = () => {
                 <FormControl fullWidth>
                   <InputLabel id='demo-simple-select-label'>What is Your Device</InputLabel>
                   <Select
-                    required
                     labelId='demo-simple-select-label'
                     id='demo-simple-select'
                     name='device'
                     value={state.device || ''}
-                    label='What is Your Device'
+                    label='What is Your Device (optional)'
                     onChange={handleChange}
                   >
+                    <MenuItem value={''}>Select</MenuItem>
                     <MenuItem value={'desktop'}>Desktop</MenuItem>
                     <MenuItem value={'mobile'}>Mobile</MenuItem>
                     {/* <MenuItem value={'tab'}>Tab</MenuItem> */}
@@ -511,7 +491,6 @@ const ForeCastForm = () => {
                 <FormControl fullWidth>
                   <InputLabel id='demo-simple-select-label'>OS</InputLabel>
                   <Select
-                    required
                     labelId='demo-simple-select-label'
                     id='os-select'
                     name='os'
@@ -548,7 +527,29 @@ const ForeCastForm = () => {
                 </FormControl>
               </Box>
             </Grid>
-
+            <Divider
+              sx={{ mt: 0, mb: 1 }}
+              style={{ borderBottom: '1px solid #ccc', width: '100%', marginTop: '20px' }}
+            />
+            <Grid item xs={12}>
+              <Typography variant='h6' component='h4' gutterBottom>
+                Position Values
+              </Typography>
+            </Grid>
+            {positions.map((position, index) => (
+              <Grid item xs={2} key={index}>
+                <FormControl fullWidth>
+                  <TextField
+                    type='number'
+                    inputProps={{ min: 0, max: 100, step: '0.01' }}
+                    label={position.name.toUpperCase()}
+                    value={position.value}
+                    onChange={handleSliderChange(index)}
+                  />
+                </FormControl>
+              </Grid>
+            ))}
+            <Grid item xs={4}></Grid>
             <Grid item xs={12}>
               <Box
                 sx={{

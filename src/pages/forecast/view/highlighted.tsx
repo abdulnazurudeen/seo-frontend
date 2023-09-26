@@ -40,7 +40,7 @@ const HighLight = ({ isLoading, orderVal }: HighLightProps) => {
         <Typography variant='body2' sx={{ letterSpacing: '0.25px' }}>
           Based on the customer data
         </Typography>
-        <Typography variant='h6' sx={{ my: 4, color: 'primary.main' }}>
+        <Typography variant='body2' sx={{ color: 'primary.main' }}>
           ${orderVal}
         </Typography>
       </CardContent>
