@@ -7,26 +7,17 @@ import TableCell from '@mui/material/TableCell'
 import TableContainer from '@mui/material/TableContainer'
 import { Tooltip, Typography } from '@mui/material'
 import InfoRoundedIcon from 'mdi-material-ui/Information'
+import CSVExportButton from 'src/layouts/components/CsvDownload'
 
 // import TablePagination from '@mui/material/TablePagination'
 // import { useState, ChangeEvent } from 'react'
 // import TopThreeData from '../../../data/top_three_data'
 
-function TopThree({ report = [] }) {
-  // const [page, setPage] = useState<number>(0)
-  // const [rowsPerPage, setRowsPerPage] = useState<number>(10)
-  // const handleChangePage = (event: unknown, newPage: number) => {
-  //   setPage(newPage)
-  // }
-  // const handleChangeRowsPerPage = (event: ChangeEvent<HTMLInputElement>) => {
-  //   setRowsPerPage(+event.target.value)
-  //   setPage(0)
-  // }
-  //, page, rowsPerPage
-  // console.log('TopThreeData', report)
-
+function TopThree(props: { report: any; id: number }) {
+  const { report, id } = props
   return (
     <Paper sx={{ width: '100%', overflow: 'hidden' }}>
+      <CSVExportButton forecastRequestId={id} reportType={'average_1_3'} />
       <TableContainer component={Paper}>
         <Table>
           <TableHead>
@@ -69,7 +60,6 @@ function TopThree({ report = [] }) {
           </TableHead>
           <TableBody>
             {
-
               // TopThreeData.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
               report.map((row: any) => {
                 // console.log(row, 'row')

@@ -7,12 +7,14 @@ import TableCell from '@mui/material/TableCell'
 import TableContainer from '@mui/material/TableContainer'
 import { Tooltip, Typography } from '@mui/material'
 import InfoRoundedIcon from 'mdi-material-ui/Information'
+import CSVExportButton from 'src/layouts/components/CsvDownload'
 
 // import TablePagination from '@mui/material/TablePagination'
 // import { useState, ChangeEvent } from 'react'
 // import AllData from '../../../data/all_data'
 
-const All = ({ report = [] }) => {
+const All = (props: { report: any; id: number }) => {
+  const { report, id } = props
   //   const [page, setPage] = useState<number>(0)
   //   const [rowsPerPage, setRowsPerPage] = useState<number>(10)
 
@@ -28,6 +30,7 @@ const All = ({ report = [] }) => {
 
   return (
     <Paper sx={{ width: '100%', overflow: 'hidden' }}>
+      <CSVExportButton forecastRequestId={id} reportType={'all_position'} />
       <TableContainer component={Paper}>
         <Table>
           <TableHead>

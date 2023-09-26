@@ -252,7 +252,7 @@ const ForeCastForm = () => {
     }
     const { token } = cookie
     const getPosVal: any = {}
-    positions.map(item => {
+    positions.forEach(item => {
       getPosVal[item.name] = item.value
     })
 

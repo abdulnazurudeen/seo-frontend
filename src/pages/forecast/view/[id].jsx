@@ -103,10 +103,8 @@ const ForcastList = () => {
             'Content-Type': 'application/json'
           }
         })
-        const {
-          data: { results }
-        } = report_response
-        setReportData(results)
+        const { data } = report_response
+        setReportData(data)
 
         const dashbaord_response = await axios.get(`${baseConst.apiUrl}v1/forecast/${id}/dashboard/`, {
           headers: {
@@ -211,7 +209,8 @@ const ForcastList = () => {
           <CardHeader
             title={
               <>
-                <span>Forcasting Report</span> <span style={{ color: '#f00' }}>{dashboardData?.keyword}</span>
+                <Typography component='h3'>Forcasting Report</Typography>{' '}
+                <span style={{ color: '#f00' }}>{dashboardData?.keyword}</span>
                 <Chip label={dashboardData.report_status} color='success' />
               </>
             }
@@ -291,13 +290,13 @@ const ForcastList = () => {
               </ApexChartWrapper>
             </TabPanel>
             <TabPanel value={value} index={1}>
-              {reportData.length > 0 && <TopThree report={reportData} />}
+              {reportData.length > 0 && <TopThree id={id} report={reportData} />}
             </TabPanel>
             <TabPanel value={value} index={2}>
-              {reportData.length > 0 && <TopTen report={reportData} />}
+              {reportData.length > 0 && <TopTen id={id} report={reportData} />}
             </TabPanel>
             <TabPanel value={value} index={3}>
-              {reportData.length > 0 && <All report={reportData} />}
+              {reportData.length > 0 && <All id={id} report={reportData} />}
             </TabPanel>
           </Box>
         </Card>

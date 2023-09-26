@@ -7,12 +7,14 @@ import TableCell from '@mui/material/TableCell'
 import TableContainer from '@mui/material/TableContainer'
 import { Tooltip, Typography } from '@mui/material'
 import InfoRoundedIcon from 'mdi-material-ui/Information'
+import CSVExportButton from 'src/layouts/components/CsvDownload'
 
 // import TablePagination from '@mui/material/TablePagination'
 // import { useState, ChangeEvent } from 'react'
 // import TopTenData from '../../../data/top_ten_data'
 
-function TopTen({ report = [] }) {
+function TopTen(props: { report: any; id: number }) {
+  const { report, id } = props
   // const [page, setPage] = useState<number>(0)
   // const [rowsPerPage, setRowsPerPage] = useState<number>(10)
   // const handleChangePage = (event: unknown, newPage: number) => {
@@ -26,6 +28,7 @@ function TopTen({ report = [] }) {
 
   return (
     <Paper sx={{ width: '100%', overflow: 'hidden' }}>
+      <CSVExportButton forecastRequestId={id} reportType={'average_4_10'} />
       <TableContainer component={Paper}>
         <Table>
           <TableHead>
@@ -67,7 +70,6 @@ function TopTen({ report = [] }) {
           </TableHead>
           <TableBody>
             {
-
               // TopThreeData.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
               report.map((row: any) => {
                 // console.log(row, 'row')
