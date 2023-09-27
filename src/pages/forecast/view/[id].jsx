@@ -209,8 +209,8 @@ const ForcastList = () => {
           <CardHeader
             title={
               <>
-                <Typography component='h3'>Forcasting Report</Typography>{' '}
-                <span style={{ color: '#f00' }}>{dashboardData?.keyword}</span>
+                <Typography variant='h4'>Forcast Report</Typography>{' '}
+                <Typography style={{ color: '#f00' }}>{dashboardData?.keyword}</Typography>
                 <Chip label={dashboardData.report_status} color='success' />
               </>
             }

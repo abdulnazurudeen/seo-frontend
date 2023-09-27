@@ -8,10 +8,7 @@ import TableContainer from '@mui/material/TableContainer'
 import { Tooltip, Typography } from '@mui/material'
 import InfoRoundedIcon from 'mdi-material-ui/Information'
 import CSVExportButton from 'src/layouts/components/CsvDownload'
-
-// import TablePagination from '@mui/material/TablePagination'
-// import { useState, ChangeEvent } from 'react'
-// import TopThreeData from '../../../data/top_three_data'
+import { roundOff } from 'src/@core/utils/helper'
 
 function TopThree(props: { report: any; id: number }) {
   const { report, id } = props
@@ -67,14 +64,17 @@ function TopThree(props: { report: any; id: number }) {
                 return (
                   <TableRow hover key={row.Keyword}>
                     <TableCell>{row.relevance_score_overlap}</TableCell>
-                    <TableCell sx={{ minWidth: 300 }}>{row.keyword}</TableCell>
+                    <TableCell sx={{ minWidth: 300 }}>
+                      {row.keyword}
+                      <small>{row.keyword_type}</small>
+                    </TableCell>
                     <TableCell>{row.search_volume}</TableCell>
                     <TableCell>{row.keyword_difficulty}</TableCell>
-                    <TableCell>{row.cpc ? row.cpc : '-'}</TableCell>
-                    <TableCell>{row.average_1_3.traffic}</TableCell>
-                    <TableCell>{row.average_1_3.conversion}</TableCell>
-                    <TableCell>{row.average_1_3.sale}</TableCell>
-                    <TableCell>{row.average_1_3.revenue}</TableCell>
+                    <TableCell>${row.cpc ? row.cpc : '-'}</TableCell>
+                    <TableCell>{roundOff(row.average_1_3.traffic, 0)}</TableCell>
+                    <TableCell>${roundOff(row.average_1_3.conversion, 0)}</TableCell>
+                    <TableCell>${roundOff(row.average_1_3.sale, 0)}</TableCell>
+                    <TableCell>${roundOff(row.average_1_3.revenue, 0)}</TableCell>
                   </TableRow>
                 )
               })
@@ -82,15 +82,6 @@ function TopThree(props: { report: any; id: number }) {
           </TableBody>
         </Table>
       </TableContainer>
-      {/* <TablePagination
-              rowsPerPageOptions={[10, 25, 100]}
-              component='div'
-              count={TopThreeData.length}
-              rowsPerPage={rowsPerPage}
-              page={page}
-              onPageChange={handleChangePage}
-              onRowsPerPageChange={handleChangeRowsPerPage}
-            /> */}
     </Paper>
   )
 }

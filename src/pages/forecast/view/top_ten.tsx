@@ -8,6 +8,7 @@ import TableContainer from '@mui/material/TableContainer'
 import { Tooltip, Typography } from '@mui/material'
 import InfoRoundedIcon from 'mdi-material-ui/Information'
 import CSVExportButton from 'src/layouts/components/CsvDownload'
+import { roundOff } from 'src/@core/utils/helper'
 
 // import TablePagination from '@mui/material/TablePagination'
 // import { useState, ChangeEvent } from 'react'
@@ -77,18 +78,17 @@ function TopTen(props: { report: any; id: number }) {
                 return (
                   <TableRow hover key={row.Keyword}>
                     <TableCell>{row.relevance_score_overlap}</TableCell>
-                    <TableCell sx={{ minWidth: 300 }}>{row.keyword}</TableCell>
+                    <TableCell sx={{ minWidth: 300 }}>
+                      {row.keyword}
+                      <small>{row.keyword_type}</small>
+                    </TableCell>
                     <TableCell>{row.search_volume}</TableCell>
                     <TableCell>{row.keyword_difficulty}</TableCell>
-                    <TableCell>{row.cpc ? row.cpc : '-'}</TableCell>
-                    <TableCell>{row.average_4_10.traffic}</TableCell>
-                    <TableCell>{row.average_4_10.conversion}</TableCell>
-                    <TableCell>{row.average_4_10.sale}</TableCell>
-                    <TableCell>{row.average_4_10.revenue}</TableCell>
-                    {/* <TableCell>{row.f9}</TableCell>
-                    <TableCell>{row.f10}</TableCell>
-                    <TableCell>{row.f11}</TableCell>
-                    <TableCell>{row.f12}</TableCell> */}
+                    <TableCell>${row.cpc ? row.cpc : '-'}</TableCell>
+                    <TableCell>{roundOff(row.average_4_10.traffic, 0)}</TableCell>
+                    <TableCell>${roundOff(row.average_4_10.conversion, 0)}</TableCell>
+                    <TableCell>${roundOff(row.average_4_10.sale, 0)}</TableCell>
+                    <TableCell>${roundOff(row.average_4_10.revenue, 0)}</TableCell>
                   </TableRow>
                 )
               })
@@ -96,15 +96,6 @@ function TopTen(props: { report: any; id: number }) {
           </TableBody>
         </Table>
       </TableContainer>
-      {/* <TablePagination
-              rowsPerPageOptions={[10, 25, 100]}
-              component='div'
-              count={TopThreeData.length}
-              rowsPerPage={rowsPerPage}
-              page={page}
-              onPageChange={handleChangePage}
-              onRowsPerPageChange={handleChangeRowsPerPage}
-            /> */}
     </Paper>
   )
 }

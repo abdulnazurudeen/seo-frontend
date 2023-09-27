@@ -55,13 +55,13 @@ const Potentials = ({ potentialData }: PotentialDataProps) => {
                 Object.keys(potentialData[k]).map((pkey: any) => (
                   <TableRow hover className={`potential-${pkey}`} key={potentialData[k][pkey]['id']}>
                     <TableCell>{lables[k][pkey]}</TableCell>
-                    <TableCell>{potentialData[k][pkey]['search_volume']}</TableCell>
-                    <TableCell>{potentialData[k][pkey]['cpc']}</TableCell>
-                    <TableCell>{roundOff(potentialData[k][pkey]['traffic'])}</TableCell>
-                    <TableCell>{roundOff(potentialData[k][pkey]['conversion'])}</TableCell>
-                    <TableCell>{roundOff(potentialData[k][pkey]['sales'])}</TableCell>
-                    <TableCell>{roundOff(potentialData[k][pkey]['revenue'])}</TableCell>
-                    <TableCell>{roundOff(potentialData[k][pkey]['annual_revenue'])}</TableCell>
+                    <TableCell>{roundOff(potentialData[k][pkey]['search_volume'], 0)}</TableCell>
+                    <TableCell>${potentialData[k][pkey]['cpc']}</TableCell>
+                    <TableCell>{roundOff(potentialData[k][pkey]['traffic'], 0)}</TableCell>
+                    <TableCell>{roundOff(potentialData[k][pkey]['conversion'], 0)}</TableCell>
+                    <TableCell>${roundOff(potentialData[k][pkey]['sales'], 0)}</TableCell>
+                    <TableCell>${roundOff(potentialData[k][pkey]['revenue'], 0)}</TableCell>
+                    <TableCell>${roundOff(potentialData[k][pkey]['annual_revenue'], 0)}</TableCell>
                   </TableRow>
                 ))
             )}

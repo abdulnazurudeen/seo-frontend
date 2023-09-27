@@ -8,25 +8,10 @@ import TableContainer from '@mui/material/TableContainer'
 import { Tooltip, Typography } from '@mui/material'
 import InfoRoundedIcon from 'mdi-material-ui/Information'
 import CSVExportButton from 'src/layouts/components/CsvDownload'
-
-// import TablePagination from '@mui/material/TablePagination'
-// import { useState, ChangeEvent } from 'react'
-// import AllData from '../../../data/all_data'
+import { roundOff } from 'src/@core/utils/helper'
 
 const All = (props: { report: any; id: number }) => {
   const { report, id } = props
-  //   const [page, setPage] = useState<number>(0)
-  //   const [rowsPerPage, setRowsPerPage] = useState<number>(10)
-
-  //   const handleChangePage = (event: unknown, newPage: number) => {
-  //     setPage(newPage)
-  //   }
-
-  //   const handleChangeRowsPerPage = (event: ChangeEvent<HTMLInputElement>) => {
-  //     setRowsPerPage(+event.target.value)
-  //     setPage(0)
-  //   }
-  // console.log(report, 'report?')
 
   return (
     <Paper sx={{ width: '100%', overflow: 'hidden' }}>
@@ -42,7 +27,6 @@ const All = (props: { report: any; id: number }) => {
                   </Typography>
                 </Tooltip>
               </TableCell>
-
               <TableCell>Keyword</TableCell>
               <TableCell>
                 <Tooltip title='Search Volume'>
@@ -113,61 +97,31 @@ const All = (props: { report: any; id: number }) => {
               return (
                 <TableRow hover key={row.f2}>
                   <TableCell>{row.relevance_score_overlap}</TableCell>
-                  <TableCell sx={{ minWidth: 300 }}>{row.keyword}</TableCell>
+                  <TableCell sx={{ minWidth: 300 }}>
+                    {row.keyword}
+                    <small>{row.keyword_type}</small>
+                  </TableCell>
                   <TableCell>{row.search_volume}</TableCell>
                   <TableCell>{row.keyword_difficulty}</TableCell>
-                  <TableCell>{row.cpc ? row.cpc : '-'}</TableCell>
+                  <TableCell>${row.cpc ? row.cpc : '-'}</TableCell>
                   {Object.keys(row.all_position).map(posid => {
                     const posdata = row.all_position[posid]
 
                     return (
                       <>
-                        <TableCell>{posdata.traffic}</TableCell>
-                        <TableCell>{posdata.conversion}</TableCell>
-                        <TableCell>{posdata.sale}</TableCell>
-                        <TableCell>{posdata.revenue}</TableCell>
+                        <TableCell>{roundOff(posdata.traffic, 0)}</TableCell>
+                        <TableCell>${roundOff(posdata.conversion, 0)}</TableCell>
+                        <TableCell>${roundOff(posdata.sale, 0)}</TableCell>
+                        <TableCell>${roundOff(posdata.revenue, 0)}</TableCell>
                       </>
                     )
                   })}
-                  {/* <TableCell>{row.all_position.traffic}</TableCell>
-                  <TableCell>{row.average_4_10.conversion}</TableCell>
-                  <TableCell>{row.average_4_10.sale}</TableCell>
-                  <TableCell>{row.average_4_10.revenue}</TableCell>
-
-                  <TableCell>{row.f9}</TableCell>
-                  <TableCell>{row.f10}</TableCell>
-                  <TableCell>{row.f11}</TableCell>
-                  <TableCell>{row.f12}</TableCell>
-                  <TableCell>{row.f13}</TableCell>
-                  <TableCell>{row.f14}</TableCell>
-                  <TableCell>{row.f15}</TableCell>
-                  <TableCell>{row.f16}</TableCell>
-                  <TableCell>{row.f17}</TableCell>
-                  <TableCell>{row.f18}</TableCell>
-                  <TableCell>{row.f19}</TableCell>
-                  <TableCell>{row.f20}</TableCell>
-                  <TableCell>{row.f21}</TableCell>
-                  <TableCell>{row.f21}</TableCell>
-                  <TableCell>{row.f22}</TableCell>
-                  <TableCell>{row.f23}</TableCell>
-                  <TableCell>{row.f24}</TableCell>
-                  <TableCell>{row.f25}</TableCell>
-                  <TableCell>{row.f26}</TableCell> */}
                 </TableRow>
               )
             })}
           </TableBody>
         </Table>
       </TableContainer>
-      {/* <TablePagination
-        rowsPerPageOptions={[10, 25, 100]}
-        component='div'
-        count={AllData.length}
-        rowsPerPage={rowsPerPage}
-        page={page}
-        onPageChange={handleChangePage}
-        onRowsPerPageChange={handleChangeRowsPerPage}
-      /> */}
     </Paper>
   )
 }

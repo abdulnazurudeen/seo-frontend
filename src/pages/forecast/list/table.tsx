@@ -34,15 +34,15 @@ interface Column {
 
 const columns: readonly Column[] = [
   { id: 'keyword', label: 'Keyword', minWidth: 100 },
-  { id: 'conversion_rate', label: 'C.R', tooltip: 'Conversion Rate', minWidth: 100 },
-
+  // { id: 'conversion_rate', label: 'C.R', tooltip: 'Conversion Rate', minWidth: 100 },
+  { id: 'location_object', child: 'location_name', label: 'Location', minWidth: 100 },
   // { id: 'lead_to_sale', label: 'Lead to Sale', minWidth: 100 },
   // { id: 'enter_average_order_value', label: 'A.O.V', tooltip: 'Average Order Value', minWidth: 100 },
-  { id: 'deice_os', label: 'Device & OS', minWidth: 100 }, // NA - desktop_widows 
-  { id: 'location_object', child: 'location_name', label: 'Location', minWidth: 100 },
-  { id: 'language_object', child: 'language_name', label: 'Language', minWidth: 100 }
+  { id: 'device_os', label: 'Device & OS', minWidth: 100 }, // NA - desktop_widows
 
-  // { id: 'no_of_related_keyword', tooltip: 'No. of Related Keyword', label: 'No. R.K', minWidth: 100 }
+  { id: 'language_object', child: 'language_name', label: 'Language', minWidth: 100 },
+
+  { id: 'report_count', tooltip: 'Total Keywords Fetched', label: 'No. Keywords', minWidth: 100 }
 ]
 
 const statusFormat = (state: String) => {
@@ -101,7 +101,7 @@ const ForeCastListTable = () => {
                   )}
                 </TableCell>
               ))}
-              <TableCell sx={{ minWidth: '50' }}>Action</TableCell>
+              <TableCell sx={{ minWidth: '50' }}>Result</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
