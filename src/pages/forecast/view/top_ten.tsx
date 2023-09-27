@@ -16,6 +16,7 @@ import { roundOff } from 'src/@core/utils/helper'
 
 function TopTen(props: { report: any; id: number }) {
   const { report, id } = props
+
   // const [page, setPage] = useState<number>(0)
   // const [rowsPerPage, setRowsPerPage] = useState<number>(10)
   // const handleChangePage = (event: unknown, newPage: number) => {
@@ -71,6 +72,7 @@ function TopTen(props: { report: any; id: number }) {
           </TableHead>
           <TableBody>
             {
+
               // TopThreeData.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
               report.map((row: any) => {
                 // console.log(row, 'row')

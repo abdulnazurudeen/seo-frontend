@@ -248,7 +248,8 @@ const ForeCastForm = () => {
     event.preventDefault()
     if (!validateForm()) {
       console.log(errors)
-      return
+      
+return
     }
     const { token } = cookie
     const getPosVal: any = {}

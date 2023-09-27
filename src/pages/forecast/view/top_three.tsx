@@ -12,7 +12,8 @@ import { roundOff } from 'src/@core/utils/helper'
 
 function TopThree(props: { report: any; id: number }) {
   const { report, id } = props
-  return (
+  
+return (
     <Paper sx={{ width: '100%', overflow: 'hidden' }}>
       <CSVExportButton forecastRequestId={id} reportType={'average_1_3'} />
       <TableContainer component={Paper}>
@@ -57,6 +58,7 @@ function TopThree(props: { report: any; id: number }) {
           </TableHead>
           <TableBody>
             {
+
               // TopThreeData.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
               report.map((row: any) => {
                 // console.log(row, 'row')
