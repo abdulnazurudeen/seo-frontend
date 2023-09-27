@@ -72,6 +72,7 @@ function TopTen(props: { report: any; id: number }) {
           </TableHead>
           <TableBody>
             {
+
               // TopThreeData.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
               report &&
                 report.map((row: any) => {
