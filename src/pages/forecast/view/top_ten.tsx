@@ -72,28 +72,28 @@ function TopTen(props: { report: any; id: number }) {
           </TableHead>
           <TableBody>
             {
-
               // TopThreeData.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-              report.map((row: any) => {
-                // console.log(row, 'row')
+              report &&
+                report.map((row: any) => {
+                  // console.log(row, 'row')
 
-                return (
-                  <TableRow hover key={row.Keyword}>
-                    <TableCell>{row.relevance_score_overlap}</TableCell>
-                    <TableCell sx={{ minWidth: 300 }}>
-                      {row.keyword}
-                      <small>{row.keyword_type}</small>
-                    </TableCell>
-                    <TableCell>{row.search_volume}</TableCell>
-                    <TableCell>{row.keyword_difficulty}</TableCell>
-                    <TableCell>${row.cpc ? row.cpc : '-'}</TableCell>
-                    <TableCell>{roundOff(row.average_4_10.traffic, 0)}</TableCell>
-                    <TableCell>${roundOff(row.average_4_10.conversion, 0)}</TableCell>
-                    <TableCell>${roundOff(row.average_4_10.sale, 0)}</TableCell>
-                    <TableCell>${roundOff(row.average_4_10.revenue, 0)}</TableCell>
-                  </TableRow>
-                )
-              })
+                  return (
+                    <TableRow hover key={row.Keyword}>
+                      <TableCell>{row.relevance_score_overlap}</TableCell>
+                      <TableCell sx={{ minWidth: 300 }}>
+                        {row.keyword}
+                        <small>{row.keyword_type}</small>
+                      </TableCell>
+                      <TableCell>{row.search_volume}</TableCell>
+                      <TableCell>{row.keyword_difficulty}</TableCell>
+                      <TableCell>${row.cpc ? row.cpc : '-'}</TableCell>
+                      <TableCell>{roundOff(row.average_4_10.traffic, 0)}</TableCell>
+                      <TableCell>${roundOff(row.average_4_10.conversion, 0)}</TableCell>
+                      <TableCell>${roundOff(row.average_4_10.sale, 0)}</TableCell>
+                      <TableCell>${roundOff(row.average_4_10.revenue, 0)}</TableCell>
+                    </TableRow>
+                  )
+                })
             }
           </TableBody>
         </Table>

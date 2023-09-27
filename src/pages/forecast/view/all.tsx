@@ -93,32 +93,33 @@ const All = (props: { report: any; id: number }) => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {report.map((row: any) => {
-              return (
-                <TableRow hover key={row.f2}>
-                  <TableCell>{row.relevance_score_overlap}</TableCell>
-                  <TableCell sx={{ minWidth: 300 }}>
-                    {row.keyword}
-                    <small>{row.keyword_type}</small>
-                  </TableCell>
-                  <TableCell>{row.search_volume}</TableCell>
-                  <TableCell>{row.keyword_difficulty}</TableCell>
-                  <TableCell>${row.cpc ? row.cpc : '-'}</TableCell>
-                  {Object.keys(row.all_position).map(posid => {
-                    const posdata = row.all_position[posid]
+            {report &&
+              report.map((row: any) => {
+                return (
+                  <TableRow hover key={row.f2}>
+                    <TableCell>{row.relevance_score_overlap}</TableCell>
+                    <TableCell sx={{ minWidth: 300 }}>
+                      {row.keyword}
+                      <small>{row.keyword_type}</small>
+                    </TableCell>
+                    <TableCell>{row.search_volume}</TableCell>
+                    <TableCell>{row.keyword_difficulty}</TableCell>
+                    <TableCell>${row.cpc ? row.cpc : '-'}</TableCell>
+                    {Object.keys(row.all_position).map(posid => {
+                      const posdata = row.all_position[posid]
 
-                    return (
-                      <>
-                        <TableCell>{roundOff(posdata.traffic, 0)}</TableCell>
-                        <TableCell>${roundOff(posdata.conversion, 0)}</TableCell>
-                        <TableCell>${roundOff(posdata.sale, 0)}</TableCell>
-                        <TableCell>${roundOff(posdata.revenue, 0)}</TableCell>
-                      </>
-                    )
-                  })}
-                </TableRow>
-              )
-            })}
+                      return (
+                        <>
+                          <TableCell>{roundOff(posdata.traffic, 0)}</TableCell>
+                          <TableCell>${roundOff(posdata.conversion, 0)}</TableCell>
+                          <TableCell>${roundOff(posdata.sale, 0)}</TableCell>
+                          <TableCell>${roundOff(posdata.revenue, 0)}</TableCell>
+                        </>
+                      )
+                    })}
+                  </TableRow>
+                )
+              })}
           </TableBody>
         </Table>
       </TableContainer>
