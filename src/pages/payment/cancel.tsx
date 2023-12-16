@@ -64,8 +64,8 @@ const PaymentCancelPage = () => {
             {iserror
               ? err_msg
               : !loading && (
-                  <Alert variant='filled' color='success' severity='success'>
-                    Thankyou, Your payment success
+                  <Alert variant='filled' color='error' severity='error'>
+                    Payment failed
                   </Alert>
                 )}
           </CardContent>
